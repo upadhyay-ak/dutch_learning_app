@@ -25,7 +25,13 @@ function renderFlashcards(cards) {
   }
   cards.forEach(card => {
     const cardDiv = document.createElement('div');
-    cardDiv.className = 'flashcard';
+    let catClass = '';
+    if (card.type === 'grammar') {
+      catClass = 'grammar';
+    } else if (card.category) {
+      catClass = card.category.toLowerCase();
+    }
+    cardDiv.className = `flashcard${catClass ? ' ' + catClass : ''}`;
     cardDiv.tabIndex = 0;
     cardDiv.innerHTML = getCardFront(card);
     cardDiv.addEventListener('click', () => flipCard(cardDiv, card));

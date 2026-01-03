@@ -12,9 +12,23 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 24px 18px 32px 18px;
 }
+.logo-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.app-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
 h1 {
   text-align: center;
   color: #2d3a4b;
+  margin: 0;
 }
 .controls {
   display: flex;
@@ -39,7 +53,6 @@ h1 {
   margin-top: 10px;
 }
 .flashcard {
-  background: #e3eafc;
   border-radius: 8px;
   margin-bottom: 16px;
   padding: 18px 14px;
@@ -47,8 +60,20 @@ h1 {
   cursor: pointer;
   transition: background 0.2s;
 }
+.flashcard.verb {
+  background: #ffe082;
+}
+.flashcard.noun {
+  background: #b3e5fc;
+}
+.flashcard.adjective {
+  background: #c8e6c9;
+}
+.flashcard.grammar {
+  background: #f8bbd0;
+}
 .flashcard.flipped {
-  background: #c7d2fa;
+  filter: brightness(0.97);
 }
 .flashcard .front, .flashcard .back {
   display: none;
