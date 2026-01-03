@@ -38,14 +38,29 @@ function getCardFront(card) {
   if (card.type === 'grammar') {
     return `<div class="front active">
       <div class="grammar-title">${card.title}</div>
-      <div>${card.description}</div>
     </div>`;
   }
-  let html = `<div class="front active">
+  return `<div class="front active">
     <div class="word">${card.word || ''}</div>
-    <div class="meaning">${card.meaning || ''}</div>
-    <div class="category">${capitalize(card.category || '')}${card.article ? ' (' + card.article + ')' : ''}</div>
-  `;
+  </div>`;
+}
+
+function getCardBack(card) {
+  if (card.type === 'grammar') {
+    return `<div class="back active">
+      <div class="grammar-title">${card.title}</div>
+      <div>${card.description || ''}</div>
+      <div>${card.example || ''}</div>
+    </div>`;
+  }
+  let html = `<div class="back active">`;
+  html += `<div class="word">${card.word || ''}</div>`;
+  if (card.meaning) {
+    html += `<div class="meaning">${card.meaning}</div>`;
+  }
+  if (card.category || card.article) {
+    html += `<div class="category">${capitalize(card.category || '')}${card.article ? ' (' + card.article + ')' : ''}</div>`;
+  }
   if (card.forms) {
     html += `<div class="forms">Forms: ${Object.entries(card.forms).map(([k,v]) => `${capitalize(k)}: ${v}`).join(', ')}</div>`;
   }
@@ -55,18 +70,6 @@ function getCardFront(card) {
   if (card.conjugation) {
     html += `<div class="conjugation">Conjugation:<ul style='margin:4px 0 0 12px;'>${Object.entries(card.conjugation).map(([k,v]) => `<li>${k}: ${v}</li>`).join('')}</ul></div>`;
   }
-  html += '</div>';
-  return html;
-}
-
-function getCardBack(card) {
-  if (card.type === 'grammar') {
-    return `<div class="back active">
-      <div class="grammar-title">${card.title}</div>
-      <div>${card.example || ''}</div>
-    </div>`;
-  }
-  let html = `<div class="back active">`;
   if (card.usage_examples && card.usage_examples.length) {
     html += `<div class="usage">Usage:<ul style='margin:4px 0 0 12px;'>${card.usage_examples.map(e => `<li>${e}</li>`).join('')}</ul></div>`;
   }
