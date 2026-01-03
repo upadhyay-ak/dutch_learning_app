@@ -1,0 +1,71 @@
+{
+  "flashcards": [
+    {
+      "id": 1,
+      "type": "word",
+      "word": "lopen",
+      "meaning": "to walk",
+      "category": "verb",
+      "level": "A2",
+      "conjugation": {
+        "ik": "loop",
+        "jij/je": "loopt",
+        "u": "loopt",
+        "hij": "loopt",
+        "zij/ze (singular)": "loopt",
+        "jullie": "lopen",
+        "wij/we": "lopen",
+        "zij/ze (plural)": "lopen"
+      },
+      "forms": {
+        "present": "loopt",
+        "past": "liep",
+        "past_participle": "gelopen"
+      },
+      "usage_examples": [
+        "Ik loop naar school.",
+        "Hij liep snel naar huis."
+      ],
+      "notes": "Irregular verb"
+    },
+    {
+      "id": 2,
+      "type": "word",
+      "word": "groot",
+      "meaning": "big",
+      "category": "adjective",
+      "level": "A2",
+      "forms": {
+        "comparative": "groter",
+        "superlative": "grootst"
+      },
+      "usage_examples": [
+        "Het huis is groot.",
+        "Dit huis is groter dan dat huis."
+      ],
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "type": "word",
+      "word": "huis",
+      "meaning": "house",
+      "category": "noun",
+      "level": "A2",
+      "article": "het",
+      "plural": "huizen",
+      "usage_examples": [
+        "Het huis is groot.",
+        "Er zijn veel huizen in de straat."
+      ],
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "type": "grammar",
+      "title": "Present Tense of Regular Verbs",
+      "description": "For most verbs, add -t for jij/hij/zij.",
+      "example": "werken → jij werkt"
+    }
+  ]
+}

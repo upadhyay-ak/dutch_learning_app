@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7fa;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 500px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 24px 18px 32px 18px;
+}
+h1 {
+  text-align: center;
+  color: #2d3a4b;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+#search {
+  flex: 2;
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+#categoryFilter, #dailyReview {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #e9e9f3;
+}
+#flashcardContainer {
+  margin-top: 10px;
+}
+.flashcard {
+  background: #e3eafc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 18px 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.flashcard.flipped {
+  background: #c7d2fa;
+}
+.flashcard .front, .flashcard .back {
+  display: none;
+}
+.flashcard .front.active, .flashcard .back.active {
+  display: block;
+}
+.flashcard .word {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #1a237e;
+}
+.flashcard .meaning {
+  color: #374151;
+  margin-bottom: 6px;
+}
+.flashcard .category {
+  font-size: 0.95em;
+  color: #607d8b;
+  margin-bottom: 4px;
+}
+.flashcard .usage, .flashcard .forms, .flashcard .conjugation, .flashcard .notes {
+  font-size: 0.98em;
+  margin-bottom: 4px;
+}
+.flashcard .grammar-title {
+  font-weight: bold;
+  color: #0d47a1;
+  margin-bottom: 6px;
+}
+@media (max-width: 600px) {
+  .container {
+    max-width: 98vw;
+    padding: 10px 2vw 20px 2vw;
+  }
+}
