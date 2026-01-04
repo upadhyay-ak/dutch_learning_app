@@ -8,24 +8,20 @@
       "category": "verb",
       "level": "A2",
       "conjugation": {
-        "ik": "loop",
-        "jij/je": "loopt",
-        "u": "loopt",
-        "hij": "loopt",
-        "zij/ze (singular)": "loopt",
-        "jullie": "lopen",
-        "wij/we": "lopen",
-        "zij/ze (plural)": "lopen"
+        "ik": { "form": "loop", "example": "Ik loop naar school." },
+        "jij/je": { "form": "loopt", "example": "Jij loopt elke dag." },
+        "u": { "form": "loopt", "example": "U loopt in het park." },
+        "hij": { "form": "loopt", "example": "Hij loopt snel naar huis." },
+        "zij/ze (singular)": { "form": "loopt", "example": "Zij loopt naar de winkel." },
+        "jullie": { "form": "lopen", "example": "Jullie lopen samen." },
+        "wij/we": { "form": "lopen", "example": "Wij lopen graag buiten." },
+        "zij/ze (plural)": { "form": "lopen", "example": "Zij lopen naar het station." }
       },
       "forms": {
-        "present": "loopt",
-        "past": "liep",
-        "past_participle": "gelopen"
+        "present": { "form": "loopt", "example": "Hij loopt naar huis." },
+        "past": { "form": "liep", "example": "Hij liep snel naar huis." },
+        "past_participle": { "form": "gelopen", "example": "Ik heb naar huis gelopen." }
       },
-      "usage_examples": [
-        "Ik loop naar school.",
-        "Hij liep snel naar huis."
-      ],
       "notes": "Irregular verb"
     },
     {
@@ -36,13 +32,10 @@
       "category": "adjective",
       "level": "A2",
       "forms": {
-        "comparative": "groter",
-        "superlative": "grootst"
+        "base": { "form": "groot", "example": "Het huis is groot." },
+        "comparative": { "form": "groter", "example": "Dit huis is groter dan dat huis." },
+        "superlative": { "form": "grootst", "example": "Het is het grootst van allemaal." }
       },
-      "usage_examples": [
-        "Het huis is groot.",
-        "Dit huis is groter dan dat huis."
-      ],
       "notes": ""
     },
     {
@@ -51,13 +44,12 @@
       "word": "huis",
       "meaning": "house",
       "category": "noun",
-      "level": "A2",
+      "level": "A1",
       "article": "het",
-      "plural": "huizen",
-      "usage_examples": [
-        "Het huis is groot.",
-        "Er zijn veel huizen in de straat."
-      ],
+      "forms": {
+        "singular": { "form": "huis", "example": "Het huis is groot." },
+        "plural": { "form": "huizen", "example": "Er zijn veel huizen in de straat." }
+      },
       "notes": ""
     },
     {

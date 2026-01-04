@@ -1,3 +1,22 @@
+/* Table styles for forms/conjugation */
+.forms-table, .conjugation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 12px 0;
+  font-size: 0.98em;
+}
+.forms-table th, .forms-table td, .conjugation-table th, .conjugation-table td {
+  border: 1px solid #b0bec5;
+  padding: 4px 8px;
+  text-align: left;
+}
+.forms-table th, .conjugation-table th {
+  background: #e3eafc;
+  color: #1a237e;
+}
+.forms-table tr:nth-child(even), .conjugation-table tr:nth-child(even) {
+  background: #f5f7fa;
+}
 body {
   font-family: Arial, sans-serif;
   background: #f7f7fa;

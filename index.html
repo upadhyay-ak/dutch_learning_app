@@ -14,13 +14,21 @@
       <h1>Dutch A2 Flashcards</h1>
     </div>
     <div class="controls">
-      <input type="text" id="search" placeholder="Search..." />
+      <div style="position:relative;flex:2;">
+        <input type="text" id="search" placeholder="Search..." autocomplete="off" />
+        <div id="autocomplete-list" class="autocomplete-items"></div>
+      </div>
       <select id="categoryFilter">
         <option value="all">All</option>
         <option value="verb">Verbs</option>
         <option value="noun">Nouns</option>
         <option value="adjective">Adjectives</option>
         <option value="grammar">Grammar</option>
+      </select>
+      <select id="levelFilter">
+        <option value="all">All Levels</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
       </select>
       <button id="dailyReview">Daily Review</button>
     </div>

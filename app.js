@@ -15,6 +15,7 @@ fetch('flashcards.json')
 const flashcardContainer = document.getElementById('flashcardContainer');
 const searchInput = document.getElementById('search');
 const categoryFilter = document.getElementById('categoryFilter');
+const levelFilter = document.getElementById('levelFilter');
 const dailyReviewBtn = document.getElementById('dailyReview');
 
 function renderFlashcards(cards) {
@@ -67,17 +68,21 @@ function getCardBack(card) {
   if (card.category || card.article) {
     html += `<div class="category">${capitalize(card.category || '')}${card.article ? ' (' + card.article + ')' : ''}</div>`;
   }
-  if (card.forms) {
-    html += `<div class="forms">Forms: ${Object.entries(card.forms).map(([k,v]) => `${capitalize(k)}: ${v}`).join(', ')}</div>`;
+  // Forms Table
+  if (card.forms && typeof card.forms === 'object') {
+    html += `<div class='forms'><b>Forms:</b><table class='forms-table'><thead><tr><th>Form</th><th>Value</th><th>Example</th></tr></thead><tbody>`;
+    for (const [formName, formObj] of Object.entries(card.forms)) {
+      html += `<tr><td>${capitalize(formName)}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
+    }
+    html += `</tbody></table></div>`;
   }
-  if (card.plural) {
-    html += `<div class="forms">Plural: ${card.plural}</div>`;
-  }
-  if (card.conjugation) {
-    html += `<div class="conjugation">Conjugation:<ul style='margin:4px 0 0 12px;'>${Object.entries(card.conjugation).map(([k,v]) => `<li>${k}: ${v}</li>`).join('')}</ul></div>`;
-  }
-  if (card.usage_examples && card.usage_examples.length) {
-    html += `<div class="usage">Usage:<ul style='margin:4px 0 0 12px;'>${card.usage_examples.map(e => `<li>${e}</li>`).join('')}</ul></div>`;
+  // Conjugation Table
+  if (card.conjugation && typeof card.conjugation === 'object') {
+    html += `<div class='conjugation'><b>Conjugation:</b><table class='conjugation-table'><thead><tr><th>Pronoun</th><th>Form</th><th>Example</th></tr></thead><tbody>`;
+    for (const [pronoun, conjObj] of Object.entries(card.conjugation)) {
+      html += `<tr><td>${pronoun}</td><td>${conjObj.form}</td><td>${conjObj.example || ''}</td></tr>`;
+    }
+    html += `</tbody></table></div>`;
   }
   if (card.notes) {
     html += `<div class="notes">Notes: ${card.notes}</div>`;
@@ -99,7 +104,12 @@ searchInput.addEventListener('input', () => {
   filterAndRender();
 });
 
+
 categoryFilter.addEventListener('change', () => {
+  filterAndRender();
+});
+
+levelFilter.addEventListener('change', () => {
   filterAndRender();
 });
 
@@ -119,15 +129,30 @@ dailyReviewBtn.addEventListener('click', () => {
 function filterAndRender() {
   const search = searchInput.value.trim().toLowerCase();
   const cat = categoryFilter.value;
+  const level = levelFilter.value;
   filteredCards = flashcards.filter(card => {
     let matchesCat = cat === 'all' || (card.category === cat) || (cat === 'grammar' && card.type === 'grammar');
+    let matchesLevel = level === 'all' || (card.level && card.level === level);
     let matchesSearch = !search || (
       (card.word && card.word.toLowerCase().includes(search)) ||
       (card.meaning && card.meaning.toLowerCase().includes(search)) ||
-      (card.usage_examples && card.usage_examples.some(e => e.toLowerCase().includes(search))) ||
-      (card.title && card.title.toLowerCase().includes(search))
+      (card.title && card.title.toLowerCase().includes(search)) ||
+      // Search in forms
+      (card.forms && typeof card.forms === 'object' && Object.values(card.forms).some(f => {
+        if (typeof f === 'object') {
+          return (f.form && f.form.toLowerCase().includes(search)) || (f.example && f.example.toLowerCase().includes(search));
+        }
+        return false;
+      })) ||
+      // Search in conjugation
+      (card.conjugation && typeof card.conjugation === 'object' && Object.values(card.conjugation).some(f => {
+        if (typeof f === 'object') {
+          return (f.form && f.form.toLowerCase().includes(search)) || (f.example && f.example.toLowerCase().includes(search));
+        }
+        return false;
+      }))
     );
-    return matchesCat && matchesSearch;
+    return matchesCat && matchesLevel && matchesSearch;
   });
   renderFlashcards(filteredCards);
 }
