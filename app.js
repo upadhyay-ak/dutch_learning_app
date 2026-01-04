@@ -22,16 +22,19 @@ function setLanguage(lang) {
 function updateUITranslations() {
   if (!window.translations) return;
   const t = translations[currentLang];
+  
   // Translate all elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key]) el.textContent = t[key];
   });
+  
   // Translate all elements with data-i18n-placeholder
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (t[key]) el.placeholder = t[key];
   });
+  
   // Category filter options (dynamic)
   const catSel = document.getElementById('categoryFilter');
   if (catSel) {
@@ -40,6 +43,7 @@ function updateUITranslations() {
       else if (t[opt.value]) opt.textContent = t[opt.value];
     });
   }
+  
   // Level filter options (dynamic)
   const levelSel = document.getElementById('levelFilter');
   if (levelSel) {
@@ -68,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
       updateUITranslations(); // Apply English translations
       renderFlashcards(filteredCards);
     });
+});
+
 function populateCategoryFilter(cards) {
   const categories = new Set();
   cards.forEach(card => {
