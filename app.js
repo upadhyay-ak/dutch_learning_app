@@ -8,15 +8,73 @@ const dailyReviewBtn = document.getElementById('dailyReview');
 const autocompleteList = document.getElementById('autocomplete-list');
 
 
-// Fetch flashcards and initialize UI
-fetch('flashcards.json')
-  .then(res => res.json())
-  .then(data => {
-    flashcards = data.flashcards;
-    filteredCards = flashcards;
-    populateCategoryFilter(flashcards);
-    renderFlashcards(filteredCards);
+
+let currentLang = 'en';
+// Load translations
+let translationsLoaded = false;
+function loadTranslations(cb) {
+  if (translationsLoaded) { cb(); return; }
+  const script = document.createElement('script');
+  script.src = 'translations.js';
+  script.onload = () => { translationsLoaded = true; cb(); };
+  document.head.appendChild(script);
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  updateUITranslations();
+  renderFlashcards(filteredCards || flashcards || []);
+}
+
+function updateUITranslations() {
+  if (!window.translations) return;
+  const t = translations[currentLang];
+  // Title
+  const titleEl = document.querySelector('h1[data-i18n="title"]');
+  if (titleEl) titleEl.textContent = t.title;
+  // Search placeholder
+  const searchEl = document.getElementById('search');
+  if (searchEl) searchEl.placeholder = t.search;
+  // Category filter
+  const catSel = document.getElementById('categoryFilter');
+  if (catSel) {
+    Array.from(catSel.options).forEach(opt => {
+      if (opt.value === 'all') opt.textContent = t.all;
+      else if (t[opt.value]) opt.textContent = t[opt.value];
+    });
+  }
+  // Level filter
+  const levelSel = document.getElementById('levelFilter');
+  if (levelSel) {
+    Array.from(levelSel.options).forEach(opt => {
+      if (opt.value === 'all') opt.textContent = t.allLevels;
+    });
+  }
+  // Daily review button
+  const drBtn = document.getElementById('dailyReview');
+  if (drBtn) drBtn.textContent = t.dailyReview;
+}
+
+// Language selector event
+document.addEventListener('DOMContentLoaded', function() {
+  loadTranslations(() => {
+    const langSel = document.getElementById('languageSelector');
+    if (langSel) {
+      langSel.value = currentLang;
+      langSel.addEventListener('change', e => setLanguage(e.target.value));
+    }
+    // Initial fetch and render
+    fetch('flashcards.json')
+      .then(res => res.json())
+      .then(data => {
+        flashcards = data.flashcards;
+        filteredCards = flashcards;
+        populateCategoryFilter(flashcards);
+        updateUITranslations();
+        renderFlashcards(filteredCards);
+      });
   });
+});
 
 function populateCategoryFilter(cards) {
   const categories = new Set();
@@ -105,6 +163,7 @@ function renderFlashcards(cards) {
     flashcardContainer.innerHTML = '<p>No flashcards found.</p>';
     return;
   }
+  const t = window.translations ? translations[currentLang] : {};
   cards.forEach(card => {
     const cardDiv = document.createElement('div');
     let catClass = '';
@@ -117,14 +176,14 @@ function renderFlashcards(cards) {
     }
     cardDiv.className = `flashcard${catClass ? ' ' + catClass : ''}`;
     cardDiv.tabIndex = 0;
-    cardDiv.innerHTML = getCardFront(card);
-    cardDiv.addEventListener('click', () => flipCard(cardDiv, card));
-    cardDiv.addEventListener('keypress', e => { if (e.key === 'Enter') flipCard(cardDiv, card); });
+    cardDiv.innerHTML = getCardFront(card, t);
+    cardDiv.addEventListener('click', () => flipCard(cardDiv, card, t));
+    cardDiv.addEventListener('keypress', e => { if (e.key === 'Enter') flipCard(cardDiv, card, t); });
     flashcardContainer.appendChild(cardDiv);
   });
 }
 
-function getCardFront(card) {
+function getCardFront(card, t = {}) {
   if (card.type === 'grammar') {
     return `<div class="front active">
       <div class="grammar-title">${card.title}</div>
@@ -135,7 +194,7 @@ function getCardFront(card) {
   </div>`;
 }
 
-function getCardBack(card) {
+function getCardBack(card, t = {}) {
   if (card.type === 'grammar') {
     return `<div class="back active">
       <div class="grammar-title">${card.title}</div>
@@ -150,29 +209,29 @@ function getCardBack(card) {
     const usages = [...card.usages].sort((a, b) => (b.primary ? 1 : 0) - (a.primary ? 1 : 0));
     usages.forEach(usage => {
       html += `<div class="usage-box">
-        <div class="usage-category"><b>${capitalize(usage.category || '')}${usage.primary ? ' (primary)' : ''}</b></div>
-        <div class="usage-meaning">${usage.meaning || ''}</div>`;
+        <div class="usage-category"><b>${t[usage.category] || capitalize(usage.category || '')}${usage.primary ? ' ' + (t.primary || '(primary)') : ''}</b></div>
+        <div class="usage-meaning">${usage.meaning ? (usage.meaning[currentLang] || usage.meaning['en'] || '') : ''}</div>`;
       if (usage.article) {
         html += `<div class="usage-article">Article: ${usage.article}</div>`;
       }
       // Forms Table
       if (usage.forms && typeof usage.forms === 'object') {
-        html += `<div class='forms'><b>Forms:</b><table class='forms-table'><thead><tr><th>Form</th><th>Value</th><th>Example</th></tr></thead><tbody>`;
+        html += `<div class='forms'><b>${t.forms || 'Forms:'}</b><table class='forms-table'><thead><tr><th>${t.form || 'Form'}</th><th>${t.value || 'Value'}</th><th>${t.example || 'Example'}</th></tr></thead><tbody>`;
         for (const [formName, formObj] of Object.entries(usage.forms)) {
-          html += `<tr><td>${capitalize(formName)}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
+          html += `<tr><td>${t[formName] || capitalize(formName)}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
         }
         html += `</tbody></table></div>`;
       }
       // Conjugation Table
       if (usage.conjugation && typeof usage.conjugation === 'object') {
-        html += `<div class='conjugation'><b>Conjugation:</b><table class='conjugation-table'><thead><tr><th>Pronoun</th><th>Form</th><th>Example</th></tr></thead><tbody>`;
+        html += `<div class='conjugation'><b>Conjugation:</b><table class='conjugation-table'><thead><tr><th>Pronoun</th><th>${t.form || 'Form'}</th><th>${t.example || 'Example'}</th></tr></thead><tbody>`;
         for (const [pronoun, conjObj] of Object.entries(usage.conjugation)) {
           html += `<tr><td>${pronoun}</td><td>${conjObj.form}</td><td>${conjObj.example || ''}</td></tr>`;
         }
         html += `</tbody></table></div>`;
       }
       if (usage.notes) {
-        html += `<div class="notes">Notes: ${usage.notes}</div>`;
+        html += `<div class="notes">${t.notes || 'Notes:'} ${(usage.notes[currentLang] || usage.notes['en'] || '')}</div>`;
       }
       html += `</div>`; // usage-box
     });
@@ -181,9 +240,9 @@ function getCardBack(card) {
   return html;
 }
 
-function flipCard(cardDiv, card) {
+function flipCard(cardDiv, card, t = {}) {
   const isFlipped = cardDiv.classList.toggle('flipped');
-  cardDiv.innerHTML = isFlipped ? getCardBack(card) : getCardFront(card);
+  cardDiv.innerHTML = isFlipped ? getCardBack(card, t) : getCardFront(card, t);
 }
 
 function capitalize(str) {

@@ -1,0 +1,45 @@
+// UI translations for English and German
+const translations = {
+  en: {
+    title: "Dutch Flashcards",
+    search: "Search...",
+    all: "All",
+    allLevels: "All Levels",
+    dailyReview: "Daily Review",
+    forms: "Forms:",
+    form: "Form",
+    value: "Value",
+    example: "Example",
+    base: "Base",
+    comparative: "Comparative",
+    superlative: "Superlative",
+    notes: "Notes:",
+    primary: "(primary)",
+    adjective: "Adjective",
+    adverb: "Adverb",
+    noun: "Noun",
+    verb: "Verb",
+    grammar: "Grammar"
+  },
+  de: {
+    title: "Niederländisch-Karteikarten",
+    search: "Suchen...",
+    all: "Alle",
+    allLevels: "Alle Stufen",
+    dailyReview: "Tägliche Wiederholung",
+    forms: "Formen:",
+    form: "Form",
+    value: "Wert",
+    example: "Beispiel",
+    base: "Grundform",
+    comparative: "Komparativ",
+    superlative: "Superlativ",
+    notes: "Hinweise:",
+    primary: "(primär)",
+    adjective: "Adjektiv",
+    adverb: "Adverb",
+    noun: "Substantiv",
+    verb: "Verb",
+    grammar: "Grammatik"
+  }
+};

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dutch A2 Flashcards</title>
+  <title>Dutch Flashcards</title>
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="logo.png" />
@@ -15,26 +15,27 @@
   <div class="container">
     <div class="logo-title">
       <img src="logo.png" alt="Dutch App Logo" class="app-logo" />
-      <h1>Dutch A2 Flashcards</h1>
+      <h1 data-i18n="title">Dutch Flashcards</h1>
+      <select id="languageSelector" style="margin-left:16px;">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+      </select>
     </div>
     <div class="controls">
       <div style="position:relative;flex:2;">
-        <input type="text" id="search" placeholder="Search..." autocomplete="off" />
+        <input type="text" id="search" data-i18n-placeholder="search" placeholder="Search..." autocomplete="off" />
         <div id="autocomplete-list" class="autocomplete-items"></div>
       </div>
       <select id="categoryFilter">
-        <option value="all">All</option>
-        <option value="verb">Verbs</option>
-        <option value="noun">Nouns</option>
-        <option value="adjective">Adjectives</option>
-        <option value="grammar">Grammar</option>
+        <option value="all" data-i18n="all">All</option>
+        <!-- dynamically populated -->
       </select>
       <select id="levelFilter">
-        <option value="all">All Levels</option>
+        <option value="all" data-i18n="allLevels">All Levels</option>
         <option value="A1">A1</option>
         <option value="A2">A2</option>
       </select>
-      <button id="dailyReview">Daily Review</button>
+      <button id="dailyReview" data-i18n="dailyReview">Daily Review</button>
     </div>
     <div id="flashcardContainer"></div>
   </div>

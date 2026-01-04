@@ -10,7 +10,7 @@
         {
           "category": "verb",
           "primary": true,
-          "meaning": "to walk",
+          "meaning": { "en": "to walk", "de": "laufen" },
           "conjugation": {
             "ik": { "form": "loop", "example": "Ik loop naar school." },
             "jij/je": { "form": "loopt", "example": "Jij loopt elke dag." },
@@ -26,7 +26,7 @@
             "past": { "form": "liep", "example": "Hij liep snel naar huis." },
             "past_participle": { "form": "gelopen", "example": "Ik heb naar huis gelopen." }
           },
-          "notes": "Irregular verb"
+          "notes": { "en": "Irregular verb", "de": "Unregelmäßiges Verb" }
         }
       ]
     },
@@ -39,23 +39,23 @@
         {
           "category": "adjective",
           "primary": true,
-          "meaning": "big",
+          "meaning": { "en": "big", "de": "groß" },
           "forms": {
             "base": { "form": "groot", "example": "Het huis is groot." },
             "comparative": { "form": "groter", "example": "Dit huis is groter dan dat huis." },
             "superlative": { "form": "grootst", "example": "Het is het grootst van allemaal." }
           },
-          "notes": ""
+          "notes": { "en": "Regular adjective. Comparative and superlative follow standard pattern.", "de": "Reguläres Adjektiv. Komparativ und Superlativ folgen dem Standardmuster." }
         },
         {
           "category": "adverb",
-          "meaning": "greatly / to a large extent",
+          "meaning": { "en": "greatly / to a large extent", "de": "in großem Maße" },
           "forms": {
             "base": { "form": "groot", "example": "Hij denkt groot." },
             "comparative": { "form": "groter", "example": "Zij droomt groter dan hij." },
             "superlative": { "form": "grootst", "example": "Van allen denkt hij het grootst." }
           },
-          "notes": "Used to describe the manner or extent of an action."
+          "notes": { "en": "Used to describe the manner or extent of an action.", "de": "Wird verwendet, um die Art oder das Ausmaß einer Handlung zu beschreiben." }
         }
       ]
     },
@@ -68,13 +68,13 @@
         {
           "category": "noun",
           "primary": true,
-          "meaning": "house",
+          "meaning": { "en": "house", "de": "Haus" },
           "article": "het",
           "forms": {
             "singular": { "form": "huis", "example": "Het huis is groot." },
             "plural": { "form": "huizen", "example": "Er zijn veel huizen in de straat." }
           },
-          "notes": ""
+          "notes": { "en": "Regular noun. 'Het' is the definite article.", "de": "Reguläres Substantiv. 'Het' ist der bestimmte Artikel." }
         }
       ]
     },
@@ -95,23 +95,23 @@
         {
           "category": "adverb",
           "primary": true,
-          "meaning": "quickly",
+          "meaning": { "en": "quickly", "de": "schnell" },
           "forms": {
             "base": { "form": "snel", "example": "Hij loopt snel." },
             "comparative": { "form": "sneller", "example": "Zij werkt sneller dan ik." },
             "superlative": { "form": "snelst", "example": "Hij rent het snelst van allemaal." }
           },
-          "notes": "Used to describe the manner of an action."
+          "notes": { "en": "Used to describe the manner of an action.", "de": "Wird verwendet, um die Art einer Handlung zu beschreiben." }
         },
         {
           "category": "adjective",
-          "meaning": "fast",
+          "meaning": { "en": "fast", "de": "schnell" },
           "forms": {
             "base": { "form": "snel", "example": "Een snelle auto." },
             "comparative": { "form": "snellere", "example": "Een snellere trein." },
             "superlative": { "form": "snelste", "example": "De snelste route." }
           },
-          "notes": "Describes a noun that is fast."
+          "notes": { "en": "Describes a noun that is fast.", "de": "Beschreibt ein schnelles Substantiv." }
         }
       ]
     }
