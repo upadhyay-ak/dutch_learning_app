@@ -20,17 +20,12 @@ function setLanguage(lang) {
 }
 
 function updateUITranslations() {
-  console.log('updateUITranslations called, currentLang:', currentLang);
-  console.log('window.translations available:', !!window.translations);
-  
   if (!window.translations) return;
   const t = translations[currentLang];
-  console.log('Translation object:', t);
   
   // Translate all elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    console.log('Translating key:', key, 'to:', t[key]);
     if (t[key]) el.textContent = t[key];
   });
   
@@ -260,14 +255,15 @@ levelFilter.addEventListener('change', () => {
 });
 
 dailyReviewBtn.addEventListener('click', () => {
+  const t = window.translations ? window.translations[currentLang] : {};
   if (!showingDaily) {
     const dailyCards = getDailyCards();
     renderFlashcards(dailyCards);
-    dailyReviewBtn.textContent = 'Show All';
+    dailyReviewBtn.textContent = t.showAll || 'Show All';
     showingDaily = true;
   } else {
     renderFlashcards(filteredCards);
-    dailyReviewBtn.textContent = 'Daily Review';
+    dailyReviewBtn.textContent = t.dailyReview || 'Daily Review';
     showingDaily = false;
   }
 });
