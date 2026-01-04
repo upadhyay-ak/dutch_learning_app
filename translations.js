@@ -1,5 +1,5 @@
 // UI translations for English and German
-const translations = {
+window.translations = {
   en: {
     title: "Dutch Flashcards",
     search: "Search...",
