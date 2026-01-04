@@ -64,10 +64,6 @@ function showAutocompleteSuggestions() {
   autocompleteList.innerHTML = matches.map(s => `<div data-value="${s}">${s}</div>`).join('');
   autocompleteList.style.display = 'block';
 }
-let flashcards = [];
-let filteredCards = [];
-let dailyCards = [];
-let showingDaily = false;
 
 // Fetch flashcards from JSON
 fetch('flashcards.json')
