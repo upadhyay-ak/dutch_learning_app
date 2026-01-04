@@ -8,7 +8,7 @@ const searchInput = document.getElementById('search');
 const categoryFilter = document.getElementById('categoryFilter');
 const levelFilter = document.getElementById('levelFilter');
 const dailyReviewBtn = document.getElementById('dailyReview');
-const autocompleteList = document.getElementById('autocomplete-list');
+const autocompleteList = document.getElementById('autocomplete-list'); // Remove duplicate variable declarations below
 
 // Fetch flashcards from JSON
 fetch('flashcards.json')
