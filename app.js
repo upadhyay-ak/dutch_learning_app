@@ -74,7 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
           flashcards = data.flashcards;
           filteredCards = flashcards;
-          setLanguage('en'); // Always render in English on load
+          populateCategoryFilter(flashcards);
+          updateUITranslations(); // Apply English translations
+          renderFlashcards(filteredCards);
         });
   });
 });
@@ -149,17 +151,6 @@ function showAutocompleteSuggestions() {
   autocompleteList.innerHTML = matches.map(s => `<div data-value="${s}">${s}</div>`).join('');
   autocompleteList.style.display = 'block';
 }
-
-// Fetch flashcards from JSON
-fetch('flashcards.json')
-  .then(res => res.json())
-  .then(data => {
-    flashcards = data.flashcards;
-    filteredCards = flashcards;
-    renderFlashcards(filteredCards);
-  });
-
-
 
 function renderFlashcards(cards) {
   flashcardContainer.innerHTML = '';

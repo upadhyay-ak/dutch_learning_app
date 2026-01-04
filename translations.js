@@ -22,7 +22,10 @@ const translations = {
     adverb: "Adverb",
     noun: "Noun",
     verb: "Verb",
-    grammar: "Grammar"
+    grammar: "Grammar",
+    conjugation: "Conjugation:",
+    pronoun: "Pronoun",
+    article: "Article:"
   },
   de: {
     title: "Niederländisch-Karteikarten",
@@ -46,6 +49,9 @@ const translations = {
     adverb: "Adverb",
     noun: "Substantiv",
     verb: "Verb",
-    grammar: "Grammatik"
+    grammar: "Grammatik",
+    conjugation: "Konjugation:",
+    pronoun: "Pronomen",
+    article: "Artikel:"
   }
 };
