@@ -7,9 +7,10 @@ const levelFilter = document.getElementById('levelFilter');
 const dailyReviewBtn = document.getElementById('dailyReview');
 const autocompleteList = document.getElementById('autocomplete-list');
 
-
-
 let currentLang = 'en';
+let flashcards = [];
+let filteredCards = [];
+let showingDaily = false;
 // Load translations
 let translationsLoaded = false;
 function loadTranslations(cb) {
@@ -23,14 +24,8 @@ function loadTranslations(cb) {
 function setLanguage(lang) {
   currentLang = lang;
   updateUITranslations();
-    renderFlashcards(filteredCards);
-    fetch('flashcards.json')
-      .then(res => res.json())
-      .then(data => {
-        flashcards = data.flashcards;
-        filteredCards = flashcards;
-        renderFlashcards(filteredCards);
-      });
+  populateCategoryFilter(flashcards);
+  renderFlashcards(filteredCards);
 }
 
 function updateUITranslations() {
@@ -74,13 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     // Initial fetch and render
-      setLanguage('en'); // Always render in English on load
       fetch('flashcards.json')
         .then(res => res.json())
         .then(data => {
           flashcards = data.flashcards;
           filteredCards = flashcards;
-          populateCategoryFilter(flashcards);
+          setLanguage('en'); // Always render in English on load
         });
   });
 });
@@ -270,7 +264,7 @@ levelFilter.addEventListener('change', () => {
 
 dailyReviewBtn.addEventListener('click', () => {
   if (!showingDaily) {
-    dailyCards = getDailyCards();
+    const dailyCards = getDailyCards();
     renderFlashcards(dailyCards);
     dailyReviewBtn.textContent = 'Show All';
     showingDaily = true;
