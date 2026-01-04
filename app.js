@@ -29,11 +29,21 @@ function setLanguage(lang) {
 }
 
 function updateUITranslations() {
-  if (!window.translations) return;
+  console.log('updateUITranslations called, currentLang:', currentLang);
+  console.log('window.translations:', window.translations);
+  
+  if (!window.translations) {
+    console.log('No translations loaded!');
+    return;
+  }
+  
   const t = translations[currentLang];
+  console.log('Translation object for', currentLang, ':', t);
+  
   // Translate all elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
+    console.log('Translating element with key:', key, 'to:', t[key]);
     if (t[key]) el.textContent = t[key];
   });
   // Translate all elements with data-i18n-placeholder
