@@ -1,56 +1,82 @@
 {
   "flashcards": [
+    
     {
       "id": 1,
       "type": "word",
       "word": "lopen",
-      "meaning": "to walk",
-      "category": "verb",
       "level": "A2",
-      "conjugation": {
-        "ik": { "form": "loop", "example": "Ik loop naar school." },
-        "jij/je": { "form": "loopt", "example": "Jij loopt elke dag." },
-        "u": { "form": "loopt", "example": "U loopt in het park." },
-        "hij": { "form": "loopt", "example": "Hij loopt snel naar huis." },
-        "zij/ze (singular)": { "form": "loopt", "example": "Zij loopt naar de winkel." },
-        "jullie": { "form": "lopen", "example": "Jullie lopen samen." },
-        "wij/we": { "form": "lopen", "example": "Wij lopen graag buiten." },
-        "zij/ze (plural)": { "form": "lopen", "example": "Zij lopen naar het station." }
-      },
-      "forms": {
-        "present": { "form": "loopt", "example": "Hij loopt naar huis." },
-        "past": { "form": "liep", "example": "Hij liep snel naar huis." },
-        "past_participle": { "form": "gelopen", "example": "Ik heb naar huis gelopen." }
-      },
-      "notes": "Irregular verb"
+      "usages": [
+        {
+          "category": "verb",
+          "primary": true,
+          "meaning": "to walk",
+          "conjugation": {
+            "ik": { "form": "loop", "example": "Ik loop naar school." },
+            "jij/je": { "form": "loopt", "example": "Jij loopt elke dag." },
+            "u": { "form": "loopt", "example": "U loopt in het park." },
+            "hij": { "form": "loopt", "example": "Hij loopt snel naar huis." },
+            "zij/ze (singular)": { "form": "loopt", "example": "Zij loopt naar de winkel." },
+            "jullie": { "form": "lopen", "example": "Jullie lopen samen." },
+            "wij/we": { "form": "lopen", "example": "Wij lopen graag buiten." },
+            "zij/ze (plural)": { "form": "lopen", "example": "Zij lopen naar het station." }
+          },
+          "forms": {
+            "present": { "form": "loopt", "example": "Hij loopt naar huis." },
+            "past": { "form": "liep", "example": "Hij liep snel naar huis." },
+            "past_participle": { "form": "gelopen", "example": "Ik heb naar huis gelopen." }
+          },
+          "notes": "Irregular verb"
+        }
+      ]
     },
     {
       "id": 2,
       "type": "word",
       "word": "groot",
-      "meaning": "big",
-      "category": "adjective",
       "level": "A2",
-      "forms": {
-        "base": { "form": "groot", "example": "Het huis is groot." },
-        "comparative": { "form": "groter", "example": "Dit huis is groter dan dat huis." },
-        "superlative": { "form": "grootst", "example": "Het is het grootst van allemaal." }
-      },
-      "notes": ""
+      "usages": [
+        {
+          "category": "adjective",
+          "primary": true,
+          "meaning": "big",
+          "forms": {
+            "base": { "form": "groot", "example": "Het huis is groot." },
+            "comparative": { "form": "groter", "example": "Dit huis is groter dan dat huis." },
+            "superlative": { "form": "grootst", "example": "Het is het grootst van allemaal." }
+          },
+          "notes": ""
+        },
+        {
+          "category": "adverb",
+          "meaning": "greatly / to a large extent",
+          "forms": {
+            "base": { "form": "groot", "example": "Hij denkt groot." },
+            "comparative": { "form": "groter", "example": "Zij droomt groter dan hij." },
+            "superlative": { "form": "grootst", "example": "Van allen denkt hij het grootst." }
+          },
+          "notes": "Used to describe the manner or extent of an action."
+        }
+      ]
     },
     {
       "id": 3,
       "type": "word",
       "word": "huis",
-      "meaning": "house",
-      "category": "noun",
       "level": "A1",
-      "article": "het",
-      "forms": {
-        "singular": { "form": "huis", "example": "Het huis is groot." },
-        "plural": { "form": "huizen", "example": "Er zijn veel huizen in de straat." }
-      },
-      "notes": ""
+      "usages": [
+        {
+          "category": "noun",
+          "primary": true,
+          "meaning": "house",
+          "article": "het",
+          "forms": {
+            "singular": { "form": "huis", "example": "Het huis is groot." },
+            "plural": { "form": "huizen", "example": "Er zijn veel huizen in de straat." }
+          },
+          "notes": ""
+        }
+      ]
     },
     {
       "id": 4,
@@ -58,6 +84,36 @@
       "title": "Present Tense of Regular Verbs",
       "description": "For most verbs, add -t for jij/hij/zij.",
       "example": "werken → jij werkt"
+    }
+    ,
+    {
+      "id": 5,
+      "type": "word",
+      "word": "snel",
+      "level": "A1",
+      "usages": [
+        {
+          "category": "adverb",
+          "primary": true,
+          "meaning": "quickly",
+          "forms": {
+            "base": { "form": "snel", "example": "Hij loopt snel." },
+            "comparative": { "form": "sneller", "example": "Zij werkt sneller dan ik." },
+            "superlative": { "form": "snelst", "example": "Hij rent het snelst van allemaal." }
+          },
+          "notes": "Used to describe the manner of an action."
+        },
+        {
+          "category": "adjective",
+          "meaning": "fast",
+          "forms": {
+            "base": { "form": "snel", "example": "Een snelle auto." },
+            "comparative": { "form": "snellere", "example": "Een snellere trein." },
+            "superlative": { "form": "snelste", "example": "De snelste route." }
+          },
+          "notes": "Describes a noun that is fast."
+        }
+      ]
     }
   ]
 }

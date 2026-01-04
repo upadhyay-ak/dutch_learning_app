@@ -7,14 +7,32 @@ const levelFilter = document.getElementById('levelFilter');
 const dailyReviewBtn = document.getElementById('dailyReview');
 const autocompleteList = document.getElementById('autocomplete-list');
 
-// Fetch flashcards from JSON
+
+// Fetch flashcards and initialize UI
 fetch('flashcards.json')
   .then(res => res.json())
   .then(data => {
     flashcards = data.flashcards;
     filteredCards = flashcards;
+    populateCategoryFilter(flashcards);
     renderFlashcards(filteredCards);
   });
+
+function populateCategoryFilter(cards) {
+  const categories = new Set();
+  cards.forEach(card => {
+    if (card.type === 'grammar') {
+      categories.add('grammar');
+    } else if (card.usages && Array.isArray(card.usages)) {
+      card.usages.forEach(u => {
+        if (u.category) categories.add(u.category);
+      });
+    }
+  });
+  const sortedCats = Array.from(categories).sort();
+  categoryFilter.innerHTML = '<option value="all">All</option>' +
+    sortedCats.map(cat => `<option value="${cat}">${capitalize(cat)}</option>`).join('');
+}
 
 searchInput.addEventListener('input', () => {
   filterAndRender();
@@ -88,8 +106,10 @@ function renderFlashcards(cards) {
     let catClass = '';
     if (card.type === 'grammar') {
       catClass = 'grammar';
-    } else if (card.category) {
-      catClass = card.category.toLowerCase();
+    } else if (card.usages && Array.isArray(card.usages)) {
+      // Use primary usage for color class if available
+      const primary = card.usages.find(u => u.primary) || card.usages[0];
+      if (primary && primary.category) catClass = primary.category.toLowerCase();
     }
     cardDiv.className = `flashcard${catClass ? ' ' + catClass : ''}`;
     cardDiv.tabIndex = 0;
@@ -121,30 +141,37 @@ function getCardBack(card) {
   }
   let html = `<div class="back active">`;
   html += `<div class="word">${card.word || ''}</div>`;
-  if (card.meaning) {
-    html += `<div class="meaning">${card.meaning}</div>`;
-  }
-  if (card.category || card.article) {
-    html += `<div class="category">${capitalize(card.category || '')}${card.article ? ' (' + card.article + ')' : ''}</div>`;
-  }
-  // Forms Table
-  if (card.forms && typeof card.forms === 'object') {
-    html += `<div class='forms'><b>Forms:</b><table class='forms-table'><thead><tr><th>Form</th><th>Value</th><th>Example</th></tr></thead><tbody>`;
-    for (const [formName, formObj] of Object.entries(card.forms)) {
-      html += `<tr><td>${capitalize(formName)}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
-    }
-    html += `</tbody></table></div>`;
-  }
-  // Conjugation Table
-  if (card.conjugation && typeof card.conjugation === 'object') {
-    html += `<div class='conjugation'><b>Conjugation:</b><table class='conjugation-table'><thead><tr><th>Pronoun</th><th>Form</th><th>Example</th></tr></thead><tbody>`;
-    for (const [pronoun, conjObj] of Object.entries(card.conjugation)) {
-      html += `<tr><td>${pronoun}</td><td>${conjObj.form}</td><td>${conjObj.example || ''}</td></tr>`;
-    }
-    html += `</tbody></table></div>`;
-  }
-  if (card.notes) {
-    html += `<div class="notes">Notes: ${card.notes}</div>`;
+  if (card.usages && Array.isArray(card.usages)) {
+    // Sort usages: primary first
+    const usages = [...card.usages].sort((a, b) => (b.primary ? 1 : 0) - (a.primary ? 1 : 0));
+    usages.forEach(usage => {
+      html += `<div class="usage-box">
+        <div class="usage-category"><b>${capitalize(usage.category || '')}${usage.primary ? ' (primary)' : ''}</b></div>
+        <div class="usage-meaning">${usage.meaning || ''}</div>`;
+      if (usage.article) {
+        html += `<div class="usage-article">Article: ${usage.article}</div>`;
+      }
+      // Forms Table
+      if (usage.forms && typeof usage.forms === 'object') {
+        html += `<div class='forms'><b>Forms:</b><table class='forms-table'><thead><tr><th>Form</th><th>Value</th><th>Example</th></tr></thead><tbody>`;
+        for (const [formName, formObj] of Object.entries(usage.forms)) {
+          html += `<tr><td>${capitalize(formName)}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
+        }
+        html += `</tbody></table></div>`;
+      }
+      // Conjugation Table
+      if (usage.conjugation && typeof usage.conjugation === 'object') {
+        html += `<div class='conjugation'><b>Conjugation:</b><table class='conjugation-table'><thead><tr><th>Pronoun</th><th>Form</th><th>Example</th></tr></thead><tbody>`;
+        for (const [pronoun, conjObj] of Object.entries(usage.conjugation)) {
+          html += `<tr><td>${pronoun}</td><td>${conjObj.form}</td><td>${conjObj.example || ''}</td></tr>`;
+        }
+        html += `</tbody></table></div>`;
+      }
+      if (usage.notes) {
+        html += `<div class="notes">Notes: ${usage.notes}</div>`;
+      }
+      html += `</div>`; // usage-box
+    });
   }
   html += '</div>';
   return html;

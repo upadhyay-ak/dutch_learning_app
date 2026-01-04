@@ -1,3 +1,43 @@
+/* Usage box styling for flashcard back */
+.usage-box {
+  border: 2px solid #b3c6ff;
+  border-radius: 10px;
+  background: #f6f8ff;
+  margin: 16px 0 12px 0;
+  padding: 14px 16px 10px 16px;
+  box-shadow: 0 2px 8px rgba(100,120,200,0.08);
+  transition: box-shadow 0.2s;
+}
+.usage-box:not(:last-child) {
+  margin-bottom: 18px;
+}
+.usage-category {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #3a4a8c;
+  margin-bottom: 4px;
+}
+.usage-meaning {
+  font-size: 1em;
+  margin-bottom: 6px;
+  color: #222;
+}
+.usage-article {
+  font-size: 0.95em;
+  color: #666;
+  margin-bottom: 6px;
+}
+.usage-box .forms, .usage-box .conjugation {
+  margin-top: 8px;
+}
+.usage-box .notes {
+  margin-top: 8px;
+  font-size: 0.95em;
+  color: #4a4a4a;
+  background: #eaf0ff;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
 /* Autocomplete styles improved */
 #autocomplete-list {
   position: absolute;
