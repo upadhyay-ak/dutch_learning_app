@@ -61,6 +61,7 @@ function showAutocompleteSuggestions() {
     autocompleteList.style.display = 'none';
     return;
   }
+  autocompleteList.className = 'autocomplete-items';
   autocompleteList.innerHTML = matches.map(s => `<div data-value="${s}">${s}</div>`).join('');
   autocompleteList.style.display = 'block';
 }
@@ -194,14 +195,14 @@ function filterAndRender() {
       // Search in forms
       (card.forms && typeof card.forms === 'object' && Object.values(card.forms).some(f => {
         if (typeof f === 'object') {
-          return (f.form && f.form.toLowerCase().includes(search)) || (f.example && f.example.toLowerCase().includes(search));
+          return (f.form && f.form.toLowerCase().includes(search));
         }
         return false;
       })) ||
       // Search in conjugation
       (card.conjugation && typeof card.conjugation === 'object' && Object.values(card.conjugation).some(f => {
         if (typeof f === 'object') {
-          return (f.form && f.form.toLowerCase().includes(search)) || (f.example && f.example.toLowerCase().includes(search));
+          return (f.form && f.form.toLowerCase().includes(search));
         }
         return false;
       }))
