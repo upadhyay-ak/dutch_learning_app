@@ -11,15 +11,6 @@ let currentLang = 'en';
 let flashcards = [];
 let filteredCards = [];
 let showingDaily = false;
-// Load translations
-let translationsLoaded = false;
-function loadTranslations(cb) {
-  if (translationsLoaded) { cb(); return; }
-  const script = document.createElement('script');
-  script.src = 'translations.js';
-  script.onload = () => { translationsLoaded = true; cb(); };
-  document.head.appendChild(script);
-}
 
 function setLanguage(lang) {
   currentLang = lang;
@@ -29,21 +20,11 @@ function setLanguage(lang) {
 }
 
 function updateUITranslations() {
-  console.log('updateUITranslations called, currentLang:', currentLang);
-  console.log('window.translations:', window.translations);
-  
-  if (!window.translations) {
-    console.log('No translations loaded!');
-    return;
-  }
-  
+  if (!window.translations) return;
   const t = translations[currentLang];
-  console.log('Translation object for', currentLang, ':', t);
-  
   // Translate all elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    console.log('Translating element with key:', key, 'to:', t[key]);
     if (t[key]) el.textContent = t[key];
   });
   // Translate all elements with data-i18n-placeholder
@@ -70,27 +51,23 @@ function updateUITranslations() {
 
 // Language selector event
 document.addEventListener('DOMContentLoaded', function() {
-  loadTranslations(() => {
-    const langSel = document.getElementById('languageSelector');
-    if (langSel) {
-      langSel.value = 'en'; // Always default to English
-      langSel.addEventListener('change', e => {
-        setLanguage(e.target.value);
-      });
-    }
-    // Initial fetch and render
-      fetch('flashcards.json')
-        .then(res => res.json())
-        .then(data => {
-          flashcards = data.flashcards;
-          filteredCards = flashcards;
-          populateCategoryFilter(flashcards);
-          updateUITranslations(); // Apply English translations
-          renderFlashcards(filteredCards);
-        });
-  });
-});
-
+  const langSel = document.getElementById('languageSelector');
+  if (langSel) {
+    langSel.value = 'en'; // Always default to English
+    langSel.addEventListener('change', e => {
+      setLanguage(e.target.value);
+    });
+  }
+  // Initial fetch and render
+  fetch('flashcards.json')
+    .then(res => res.json())
+    .then(data => {
+      flashcards = data.flashcards;
+      filteredCards = flashcards;
+      populateCategoryFilter(flashcards);
+      updateUITranslations(); // Apply English translations
+      renderFlashcards(filteredCards);
+    });
 function populateCategoryFilter(cards) {
   const categories = new Set();
   cards.forEach(card => {
