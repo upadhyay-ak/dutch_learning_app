@@ -162,9 +162,6 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-searchInput.addEventListener('input', () => {
-  // replaced by enhanced autocomplete logic above
-
 
 categoryFilter.addEventListener('change', () => {
   filterAndRender();
