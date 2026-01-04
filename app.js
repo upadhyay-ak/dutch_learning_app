@@ -213,7 +213,15 @@ function getCardBack(card, t = {}) {
       if (usage.forms && typeof usage.forms === 'object') {
         html += `<div class='forms'><b>${t.forms || 'Forms:'}</b><table class='forms-table'><thead><tr><th>${t.form || 'Form'}</th><th>${t.value || 'Value'}</th><th>${t.example || 'Example'}</th></tr></thead><tbody>`;
         for (const [formName, formObj] of Object.entries(usage.forms)) {
-          html += `<tr><td>${t[formName] || capitalize(formName)}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
+          // Map formName to translation key (handle underscores and case)
+          let labelKey = formName;
+          if (formName === 'past_participle') labelKey = 'pastParticiple';
+          else if (formName === 'present') labelKey = 'present';
+          else if (formName === 'past') labelKey = 'past';
+          
+          // Get translated label or clean fallback
+          const displayLabel = t[labelKey] || capitalize(formName.replace(/_/g, ' '));
+          html += `<tr><td>${displayLabel}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
         }
         html += `</tbody></table></div>`;
       }
