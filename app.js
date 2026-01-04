@@ -121,11 +121,20 @@ function showAutocompleteSuggestions() {
     if (card.word) suggestions.add(card.word);
     if (card.usages && Array.isArray(card.usages)) {
       card.usages.forEach(u => {
+        // Add meanings in current language
+        if (u.meaning && typeof u.meaning === 'object') {
+          const currentMeaning = u.meaning[currentLang];
+          if (currentMeaning) suggestions.add(currentMeaning);
+        } else if (u.meaning && typeof u.meaning === 'string') {
+          suggestions.add(u.meaning);
+        }
+        // Add forms
         if (u.forms && typeof u.forms === 'object') {
           Object.values(u.forms).forEach(f => {
             if (f.form) suggestions.add(f.form);
           });
         }
+        // Add conjugations
         if (u.conjugation && typeof u.conjugation === 'object') {
           Object.values(u.conjugation).forEach(f => {
             if (f.form) suggestions.add(f.form);
@@ -281,7 +290,7 @@ function filterAndRender() {
     // Level filter (top-level)
     let matchesLevel = level === 'all' || (card.level && card.level === level);
 
-    // Search logic: check word, title, and all usages (meaning in current language, forms, conjugation, notes)
+    // Search logic: check word, title, and all usages (meaning in current language, forms, conjugation)
     let matchesSearch = !search || (
       (card.word && card.word.toLowerCase().includes(search)) ||
       (card.title && card.title.toLowerCase().includes(search)) ||
@@ -293,15 +302,6 @@ function filterAndRender() {
           meaningMatch = currentMeaning && currentMeaning.toLowerCase().includes(search);
         } else if (u.meaning && typeof u.meaning === 'string') {
           meaningMatch = u.meaning.toLowerCase().includes(search);
-        }
-        
-        // notes: search in current language specifically
-        let notesMatch = false;
-        if (u.notes && typeof u.notes === 'object') {
-          const currentNotes = u.notes[currentLang];
-          notesMatch = currentNotes && currentNotes.toLowerCase().includes(search);
-        } else if (u.notes && typeof u.notes === 'string') {
-          notesMatch = u.notes.toLowerCase().includes(search);
         }
         
         // forms: search all forms (conjugations, comparatives, superlatives, plurals, etc.)
@@ -316,7 +316,7 @@ function filterAndRender() {
           conjMatch = true;
         }
         
-        return meaningMatch || notesMatch || formsMatch || conjMatch;
+        return meaningMatch || formsMatch || conjMatch;
       }))
     );
     return matchesCat && matchesLevel && matchesSearch;
