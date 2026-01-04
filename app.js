@@ -1,10 +1,11 @@
 
+
 const flashcardContainer = document.getElementById('flashcardContainer');
 const searchInput = document.getElementById('search');
 const categoryFilter = document.getElementById('categoryFilter');
 const levelFilter = document.getElementById('levelFilter');
 const dailyReviewBtn = document.getElementById('dailyReview');
-const autocompleteList = document.getElementById('autocomplete-list'); // Remove duplicate variable declarations below
+const autocompleteList = document.getElementById('autocomplete-list');
 
 // Fetch flashcards from JSON
 fetch('flashcards.json')
@@ -77,11 +78,7 @@ fetch('flashcards.json')
     renderFlashcards(filteredCards);
   });
 
-const flashcardContainer = document.getElementById('flashcardContainer');
-const searchInput = document.getElementById('search');
-const categoryFilter = document.getElementById('categoryFilter');
-const levelFilter = document.getElementById('levelFilter');
-const dailyReviewBtn = document.getElementById('dailyReview');
+
 
 function renderFlashcards(cards) {
   flashcardContainer.innerHTML = '';
