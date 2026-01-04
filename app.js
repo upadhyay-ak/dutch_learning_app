@@ -201,6 +201,15 @@ function getCardBack(card, t = {}) {
   }
   let html = `<div class="back active">`;
   html += `<div class="word">${card.word || ''}</div>`;
+  
+  // Add main example with translation if available
+  if (card.example) {
+    html += `<div class="main-example">${card.example}`;
+    if (card.translation && card.translation[currentLang]) {
+      html += `<br><small style="color: #666; font-style: italic;">${card.translation[currentLang]}</small>`;
+    }
+    html += `</div>`;
+  }
   if (card.usages && Array.isArray(card.usages)) {
     // Sort usages: primary first
     const usages = [...card.usages].sort((a, b) => (b.primary ? 1 : 0) - (a.primary ? 1 : 0));
@@ -223,7 +232,14 @@ function getCardBack(card, t = {}) {
           
           // Get translated label or clean fallback
           const displayLabel = t[labelKey] || capitalize(formName.replace(/_/g, ' '));
-          html += `<tr><td>${displayLabel}</td><td>${formObj.form}</td><td>${formObj.example || ''}</td></tr>`;
+          
+          // Create example cell with Dutch and translated text if available
+          let exampleCell = formObj.example || '';
+          if (formObj.example && formObj.translation && formObj.translation[currentLang]) {
+            exampleCell = `${formObj.example}<br><small style="color: #666; font-style: italic;">${formObj.translation[currentLang]}</small>`;
+          }
+          
+          html += `<tr><td>${displayLabel}</td><td>${formObj.form}</td><td>${exampleCell}</td></tr>`;
         }
         html += `</tbody></table></div>`;
       }
@@ -231,7 +247,19 @@ function getCardBack(card, t = {}) {
       if (usage.conjugation && typeof usage.conjugation === 'object') {
         html += `<div class='conjugation'><b>${t.conjugation || 'Conjugation:'}</b><table class='conjugation-table'><thead><tr><th>${t.pronoun || 'Pronoun'}</th><th>${t.form || 'Form'}</th><th>${t.example || 'Example'}</th></tr></thead><tbody>`;
         for (const [pronoun, conjObj] of Object.entries(usage.conjugation)) {
-          html += `<tr><td>${pronoun}</td><td>${conjObj.form}</td><td>${conjObj.example || ''}</td></tr>`;
+          // Translate (question) in pronoun names if present
+          let translatedPronoun = pronoun;
+          if (pronoun.includes('(question)') && t.question) {
+            translatedPronoun = pronoun.replace('(question)', `(${t.question})`);
+          }
+          
+          // Create example cell with Dutch and translated text if available
+          let exampleCell = conjObj.example || '';
+          if (conjObj.example && conjObj.translation && conjObj.translation[currentLang]) {
+            exampleCell = `${conjObj.example}<br><small style="color: #666; font-style: italic;">${conjObj.translation[currentLang]}</small>`;
+          }
+          
+          html += `<tr><td>${translatedPronoun}</td><td>${conjObj.form}</td><td>${exampleCell}</td></tr>`;
         }
         html += `</tbody></table></div>`;
       }

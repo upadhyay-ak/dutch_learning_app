@@ -10,23 +10,120 @@
         {
           "category": "verb",
           "primary": true,
-          "meaning": { "en": "to walk", "de": "laufen", "nl": "lopen", "es": "caminar", "pl": "iść", "pt": "andar", "fr": "marcher", "it": "camminare" },
+          "meaning": { "en": "to walk", "de": "laufen", "es": "caminar", "pl": "iść", "pt": "andar", "fr": "marcher", "it": "camminare" },
           "conjugation": {
-            "ik": { "form": "loop", "example": "Ik loop naar school." },
-            "jij/je": { "form": "loopt", "example": "Jij loopt elke dag." },
-            "u": { "form": "loopt", "example": "U loopt in het park." },
-            "hij": { "form": "loopt", "example": "Hij loopt snel naar huis." },
-            "zij/ze (singular)": { "form": "loopt", "example": "Zij loopt naar de winkel." },
-            "jullie": { "form": "lopen", "example": "Jullie lopen samen." },
-            "wij/we": { "form": "lopen", "example": "Wij lopen graag buiten." },
-            "zij/ze (plural)": { "form": "lopen", "example": "Zij lopen naar het station." }
+            "ik": { "form": "loop", "example": "Ik loop naar school.", "translation": {
+              "en": "I walk to school.",
+              "de": "Ich gehe zur Schule.",
+              "es": "Camino a la escuela.",
+              "pl": "Idę do szkoły.",
+              "pt": "Eu ando para a escola.",
+              "fr": "Je marche à l'école.",
+              "it": "Cammino verso la scuola."
+            } },
+            "jij/je": { "form": "loopt", "example": "Jij loopt elke dag.", "translation": {
+              "en": "You walk every day.",
+              "de": "Du gehst jeden Tag.",
+              "es": "Caminas todos los días.",
+              "pl": "Chodzisz codziennie.",
+              "pt": "Você anda todos os dias.",
+              "fr": "Tu marches tous les jours.",
+              "it": "Cammini ogni giorno."
+            } },
+            "jij/je (question)": { "form": "loop", "example": "Loop jij elke dag?", "translation": {
+              "en": "Do you walk every day?",
+              "de": "Gehst du jeden Tag?",
+              "es": "¿Caminas todos los días?",
+              "pl": "Czy chodzisz codziennie?",
+              "pt": "Você anda todos os dias?",
+              "fr": "Marches-tu tous les jours?",
+              "it": "Cammini ogni giorno?"
+            } },
+            "u": { "form": "loopt", "example": "U loopt in het park.", "translation": {
+              "en": "You walk in the park.",
+              "de": "Sie gehen im Park.",
+              "es": "Usted camina en el parque.",
+              "pl": "Idzie Pan/Pani w parku.",
+              "pt": "Você anda no parque.",
+              "fr": "Vous marchez dans le parc.",
+              "it": "Lei cammina nel parco."
+            } },
+            "hij": { "form": "loopt", "example": "Hij loopt snel naar huis.", "translation": {
+              "en": "He walks quickly home.",
+              "de": "Er geht schnell nach Hause.",
+              "es": "Él camina rápido a casa.",
+              "pl": "On szybko idzie do domu.",
+              "pt": "Ele anda rapidamente para casa.",
+              "fr": "Il marche rapidement à la maison.",
+              "it": "Lui cammina velocemente verso casa."
+            } },
+            "zij/ze (singular)": { "form": "loopt", "example": "Zij loopt naar de winkel.", "translation": {
+              "en": "She walks to the store.",
+              "de": "Sie geht zum Laden.",
+              "es": "Ella camina a la tienda.",
+              "pl": "Ona idzie do sklepu.",
+              "pt": "Ela anda para a loja.",
+              "fr": "Elle marche au magasin.",
+              "it": "Lei cammina verso il negozio."
+            } },
+            "jullie": { "form": "lopen", "example": "Jullie lopen samen.", "translation": {
+              "en": "You walk together.",
+              "de": "Ihr geht zusammen.",
+              "es": "Caminan juntos.",
+              "pl": "Chodzicie razem.",
+              "pt": "Vocês andam juntos.",
+              "fr": "Vous marchez ensemble.",
+              "it": "Voi camminate insieme."
+            } },
+            "wij/we": { "form": "lopen", "example": "Wij lopen graag buiten.", "translation": {
+              "en": "We like to walk outside.",
+              "de": "Wir gehen gerne draußen.",
+              "es": "Nos gusta caminar afuera.",
+              "pl": "Lubimy chodzić na zewnątrz.",
+              "pt": "Gostamos de andar lá fora.",
+              "fr": "Nous aimons marcher dehors.",
+              "it": "Ci piace camminare fuori."
+            } },
+            "zij/ze (plural)": { "form": "lopen", "example": "Zij lopen naar het station.", "translation": {
+              "en": "They walk to the station.",
+              "de": "Sie gehen zum Bahnhof.",
+              "es": "Ellos caminan a la estación.",
+              "pl": "Idą na stację.",
+              "pt": "Eles andam para a estação.",
+              "fr": "Ils marchent à la gare.",
+              "it": "Loro camminano verso la stazione."
+            } }
           },
           "forms": {
-            "present": { "form": "loopt", "example": "Hij loopt naar huis." },
-            "past": { "form": "liep", "example": "Hij liep snel naar huis." },
-            "past_participle": { "form": "gelopen", "example": "Ik heb naar huis gelopen." }
+            "present": { "form": "loopt", "example": "Hij loopt naar huis.", "translation": {
+              "en": "He walks home.",
+              "de": "Er geht nach Hause.",
+              "es": "Él camina a casa.",
+              "pl": "On idzie do domu.",
+              "pt": "Ele anda para casa.",
+              "fr": "Il marche à la maison.",
+              "it": "Lui cammina verso casa."
+            } },
+            "past": { "form": "liep", "example": "Hij liep snel naar huis.", "translation": {
+              "en": "He walked quickly home.",
+              "de": "Er ging schnell nach Hause.",
+              "es": "Él caminó rápido a casa.",
+              "pl": "Szybko poszedł do domu.",
+              "pt": "Ele andou rapidamente para casa.",
+              "fr": "Il a marché rapidement à la maison.",
+              "it": "Lui ha camminato velocemente verso casa."
+            } },
+            "past_participle": { "form": "gelopen", "example": "Ik heb naar huis gelopen.", "translation": {
+              "en": "I have walked home.",
+              "de": "Ich bin nach Hause gelaufen.",
+              "es": "He caminado a casa.",
+              "pl": "Poszedłem do domu.",
+              "pt": "Eu andei para casa.",
+              "fr": "J'ai marché à la maison.",
+              "it": "Ho camminato verso casa."
+            } }
           },
-          "notes": { "en": "Irregular verb", "de": "Unregelmäßiges Verb", "nl": "Onregelmatig werkwoord", "es": "Verbo irregular", "pl": "Czasownik nieregularny", "pt": "Verbo irregular", "fr": "Verbe irrégulier", "it": "Verbo irregolare" }
+          "notes": { "en": "Irregular verb", "de": "Unregelmäßiges Verb", "es": "Verbo irregular", "pl": "Czasownik nieregularny", "pt": "Verbo irregular", "fr": "Verbe irrégulier", "it": "Verbo irregolare" }
         }
       ]
     },
@@ -39,23 +136,103 @@
         {
           "category": "adjective",
           "primary": true,
-          "meaning": { "en": "big", "de": "groß", "nl": "groot", "es": "grande", "pl": "duży", "pt": "grande", "fr": "grand", "it": "grande" },
-          "forms": {
-            "base": { "form": "groot", "example": "Het huis is groot." },
-            "comparative": { "form": "groter", "example": "Dit huis is groter dan dat huis." },
-            "superlative": { "form": "grootst", "example": "Het is het grootst van allemaal." }
+          "meaning": {
+            "en": "big",
+            "de": "groß",
+            "es": "grande",
+            "pl": "duży",
+            "pt": "grande",
+            "fr": "grand",
+            "it": "grande"
           },
-          "notes": { "en": "Regular adjective. Comparative and superlative follow standard pattern.", "de": "Reguläres Adjektiv. Komparativ und Superlativ folgen dem Standardmuster.", "nl": "Regelmatig bijvoeglijk naamwoord. Vergrotende en overtreffende trap volgen het standaardpatroon.", "es": "Adjetivo regular. El comparativo y superlativo siguen el patrón estándar.", "pl": "Regularny przymiotnik. Stopień wyższy i najwyższy są zgodne ze standardowym wzorem.", "pt": "Adjetivo regular. Comparativo e superlativo seguem o padrão padrão.", "fr": "Adjectif régulier. Le comparatif et le superlatif suivent le modèle standard.", "it": "Aggettivo regolare. Comparativo e superlativo seguono il modello standard." }
+          "forms": {
+            "base": { "form": "groot", "example": "Het huis is groot.", "translation": {
+              "en": "The house is big.",
+              "de": "Das Haus ist groß.",
+              "es": "La casa es grande.",
+              "pl": "Dom jest duży.",
+              "pt": "A casa é grande.",
+              "fr": "La maison est grande.",
+              "it": "La casa è grande."
+            } },
+            "comparative": { "form": "groter", "example": "Dit huis is groter dan dat huis.", "translation": {
+              "en": "This house is bigger than that house.",
+              "de": "Dieses Haus ist größer als jenes Haus.",
+              "es": "Esta casa es más grande que esa casa.",
+              "pl": "Ten dom jest większy niż tamten dom.",
+              "pt": "Esta casa é maior que aquela casa.",
+              "fr": "Cette maison est plus grande que cette maison-là.",
+              "it": "Questa casa è più grande di quella casa."
+            } },
+            "superlative": { "form": "grootst", "example": "Het is het grootst van allemaal.", "translation": {
+              "en": "It is the biggest of all.",
+              "de": "Es ist das größte von allen.",
+              "es": "Es el más grande de todos.",
+              "pl": "To jest największe ze wszystkich.",
+              "pt": "É o maior de todos.",
+              "fr": "C'est le plus grand de tous.",
+              "it": "È il più grande di tutti."
+            } }
+          },
+          "notes": {
+            "en": "Regular adjective. Comparative and superlative follow standard pattern.",
+            "de": "Reguläres Adjektiv. Komparativ und Superlativ folgen dem Standardmuster.",
+            "es": "Adjetivo regular. El comparativo y superlativo siguen el patrón estándar.",
+            "pl": "Regularny przymiotnik. Stopień wyższy i najwyższy są zgodne ze standardowym wzorem.",
+            "pt": "Adjetivo regular. Comparativo e superlativo seguem o padrão padrão.",
+            "fr": "Adjectif régulier. Le comparatif et le superlatif suivent le modèle standard.",
+            "it": "Aggettivo regolare. Comparativo e superlativo seguono il modello standard."
+          }
         },
         {
           "category": "adverb",
-          "meaning": { "en": "greatly / to a large extent", "de": "in großem Maße", "nl": "in grote mate", "es": "en gran medida", "pl": "w dużym stopniu", "pt": "em grande medida", "fr": "dans une large mesure", "it": "in larga misura" },
-          "forms": {
-            "base": { "form": "groot", "example": "Hij denkt groot." },
-            "comparative": { "form": "groter", "example": "Zij droomt groter dan hij." },
-            "superlative": { "form": "grootst", "example": "Van allen denkt hij het grootst." }
+          "meaning": {
+            "en": "greatly / to a large extent",
+            "de": "in großem Maße",
+            "es": "en gran medida",
+            "pl": "w dużym stopniu",
+            "pt": "em grande medida",
+            "fr": "dans une large mesure",
+            "it": "in larga misura"
           },
-          "notes": { "en": "Used to describe the manner or extent of an action.", "de": "Wird verwendet, um die Art oder das Ausmaß einer Handlung zu beschreiben.", "nl": "Gebruikt om de manier of omvang van een handeling te beschrijven.", "es": "Se usa para describir la manera o extensión de una acción.", "pl": "Używany do opisania sposobu lub zakresu działania.", "pt": "Usado para descrever a maneira ou extensão de uma ação.", "fr": "Utilisé pour décrire la manière ou l'étendue d'une action.", "it": "Usato per descrivere il modo o l'estensione di un'azione." }
+          "forms": {
+            "base": { "form": "groot", "example": "Hij denkt groot.", "translation": {
+              "en": "He thinks big.",
+              "de": "Er denkt groß.",
+              "es": "Piensa en grande.",
+              "pl": "Myśli dużo.",
+              "pt": "Ele pensa grande.",
+              "fr": "Il pense grand.",
+              "it": "Lui pensa in grande."
+            } },
+            "comparative": { "form": "groter", "example": "Zij droomt groter dan hij.", "translation": {
+              "en": "She dreams bigger than him.",
+              "de": "Sie träumt größer als er.",
+              "es": "Ella sueña más grande que él.",
+              "pl": "Ona marzy więcej niż on.",
+              "pt": "Ela sonha maior que ele.",
+              "fr": "Elle rêve plus grand que lui.",
+              "it": "Lei sogna più in grande di lui."
+            } },
+            "superlative": { "form": "grootst", "example": "Van allen denkt hij het grootst.", "translation": {
+              "en": "Of all, he thinks the biggest.",
+              "de": "Von allen denkt er am größten.",
+              "es": "De todos, él piensa lo más grande.",
+              "pl": "Ze wszystkich on myśli najwięcej.",
+              "pt": "De todos, ele pensa o maior.",
+              "fr": "De tous, il pense le plus grand.",
+              "it": "Di tutti, lui pensa il più grande."
+            } }
+          },
+          "notes": {
+            "en": "Used to describe the manner or extent of an action.",
+            "de": "Wird verwendet, um die Art oder das Ausmaß einer Handlung zu beschreiben.",
+            "es": "Se usa para describir la manera o extensión de una acción.",
+            "pl": "Używany do opisania sposobu lub zakresu działania.",
+            "pt": "Usado para descrever a maneira ou extensão de uma ação.",
+            "fr": "Utilisé pour décrire la manière ou l'étendue d'une action.",
+            "it": "Usato per descrivere il modo o l'estensione di un'azione."
+          }
         }
       ]
     },
@@ -68,13 +245,45 @@
         {
           "category": "noun",
           "primary": true,
-          "meaning": { "en": "house", "de": "Haus", "nl": "huis", "es": "casa", "pl": "dom", "pt": "casa", "fr": "maison", "it": "casa" },
+          "meaning": {
+            "en": "house",
+            "de": "Haus",
+            "es": "casa",
+            "pl": "dom",
+            "pt": "casa",
+            "fr": "maison",
+            "it": "casa"
+          },
           "article": "het",
           "forms": {
-            "singular": { "form": "huis", "example": "Het huis is groot." },
-            "plural": { "form": "huizen", "example": "Er zijn veel huizen in de straat." }
+            "singular": { "form": "huis", "example": "Het huis is groot.", "translation": {
+              "en": "The house is big.",
+              "de": "Das Haus ist groß.",
+              "es": "La casa es grande.",
+              "pl": "Dom jest duży.",
+              "pt": "A casa é grande.",
+              "fr": "La maison est grande.",
+              "it": "La casa è grande."
+            } },
+            "plural": { "form": "huizen", "example": "Er zijn veel huizen in de straat.", "translation": {
+              "en": "There are many houses on the street.",
+              "de": "Es gibt viele Häuser auf der Straße.",
+              "es": "Hay muchas casas en la calle.",
+              "pl": "Na ulicy jest wiele domów.",
+              "pt": "Há muitas casas na rua.",
+              "fr": "Il y a beaucoup de maisons dans la rue.",
+              "it": "Ci sono molte case sulla strada."
+            } }
           },
-          "notes": { "en": "Regular noun. 'Het' is the definite article.", "de": "Reguläres Substantiv. 'Het' ist der bestimmte Artikel.", "nl": "Regelmatig zelfstandig naamwoord. 'Het' is het bepaald lidwoord.", "es": "Sustantivo regular. 'Het' es el artículo definido.", "pl": "Regularny rzeczownik. 'Het' jest rodzajnikiem określonym.", "pt": "Substantivo regular. 'Het' é o artigo definido.", "fr": "Nom régulier. 'Het' est l'article défini.", "it": "Sostantivo regolare. 'Het' è l'articolo determinativo." }
+          "notes": {
+            "en": "Regular noun. 'Het' is the definite article.",
+            "de": "Reguläres Substantiv. 'Het' ist der bestimmte Artikel.",
+            "es": "Sustantivo regular. 'Het' es el artículo definido.",
+            "pl": "Regularny rzeczownik. 'Het' jest rodzajnikiem określonym.",
+            "pt": "Substantivo regular. 'Het' é o artigo definido.",
+            "fr": "Nom régulier. 'Het' est l'article défini.",
+            "it": "Sostantivo regolare. 'Het' è l'articolo determinativo."
+          }
         }
       ]
     },
@@ -95,23 +304,103 @@
         {
           "category": "adverb",
           "primary": true,
-          "meaning": { "en": "quickly", "de": "schnell", "nl": "snel", "es": "rápidamente", "pl": "szybko", "pt": "rapidamente", "fr": "rapidement", "it": "velocemente" },
-          "forms": {
-            "base": { "form": "snel", "example": "Hij loopt snel." },
-            "comparative": { "form": "sneller", "example": "Zij werkt sneller dan ik." },
-            "superlative": { "form": "snelst", "example": "Hij rent het snelst van allemaal." }
+          "meaning": {
+            "en": "quickly",
+            "de": "schnell",
+            "es": "rápidamente",
+            "pl": "szybko",
+            "pt": "rapidamente",
+            "fr": "rapidement",
+            "it": "velocemente"
           },
-          "notes": { "en": "Used to describe the manner of an action.", "de": "Wird verwendet, um die Art einer Handlung zu beschreiben.", "nl": "Gebruikt om de manier van een handeling te beschrijven.", "es": "Se usa para describir la manera de una acción.", "pl": "Używany do opisania sposobu działania.", "pt": "Usado para descrever a maneira de uma ação.", "fr": "Utilisé pour décrire la manière d'une action.", "it": "Usato per descrivere il modo di un'azione." }
+          "forms": {
+            "base": { "form": "snel", "example": "Hij loopt snel.", "translation": {
+              "en": "He walks quickly.",
+              "de": "Er läuft schnell.",
+              "es": "Él camina rápidamente.",
+              "pl": "On idzie szybko.",
+              "pt": "Ele caminha rapidamente.",
+              "fr": "Il marche rapidement.",
+              "it": "Lui cammina velocemente."
+            } },
+            "comparative": { "form": "sneller", "example": "Zij werkt sneller dan ik.", "translation": {
+              "en": "She works faster than I do.",
+              "de": "Sie arbeitet schneller als ich.",
+              "es": "Ella trabaja más rápido que yo.",
+              "pl": "Ona pracuje szybciej niż ja.",
+              "pt": "Ela trabalha mais rápido que eu.",
+              "fr": "Elle travaille plus vite que moi.",
+              "it": "Lei lavora più velocemente di me."
+            } },
+            "superlative": { "form": "snelst", "example": "Hij rent het snelst van allemaal.", "translation": {
+              "en": "He runs the fastest of all.",
+              "de": "Er rennt am schnellsten von allen.",
+              "es": "Él corre el más rápido de todos.",
+              "pl": "On biega najszybciej ze wszystkich.",
+              "pt": "Ele corre o mais rápido de todos.",
+              "fr": "Il court le plus vite de tous.",
+              "it": "Lui corre il più veloce di tutti."
+            } }
+          },
+          "notes": {
+            "en": "Used to describe the manner of an action.",
+            "de": "Wird verwendet, um die Art einer Handlung zu beschreiben.",
+            "es": "Se usa para describir la manera de una acción.",
+            "pl": "Używany do opisania sposobu działania.",
+            "pt": "Usado para descrever a maneira de uma ação.",
+            "fr": "Utilisé pour décrire la manière d'une action.",
+            "it": "Usato per descrivere il modo di un'azione."
+          }
         },
         {
           "category": "adjective",
-          "meaning": { "en": "fast", "de": "schnell", "nl": "snel", "es": "rápido", "pl": "szybki", "pt": "rápido", "fr": "rapide", "it": "veloce" },
-          "forms": {
-            "base": { "form": "snel", "example": "Een snelle auto." },
-            "comparative": { "form": "snellere", "example": "Een snellere trein." },
-            "superlative": { "form": "snelste", "example": "De snelste route." }
+          "meaning": {
+            "en": "fast",
+            "de": "schnell",
+            "es": "rápido",
+            "pl": "szybki",
+            "pt": "rápido",
+            "fr": "rapide",
+            "it": "veloce"
           },
-          "notes": { "en": "Describes a noun that is fast.", "de": "Beschreibt ein schnelles Substantiv.", "nl": "Beschrijft een zelfstandig naamwoord dat snel is.", "es": "Describe un sustantivo que es rápido.", "pl": "Opisuje rzeczownik, który jest szybki.", "pt": "Descreve um substantivo que é rápido.", "fr": "Décrit un nom qui est rapide.", "it": "Descrive un sostantivo che è veloce." }
+          "forms": {
+            "base": { "form": "snel", "example": "Een snelle auto.", "translation": {
+              "en": "A fast car.",
+              "de": "Ein schnelles Auto.",
+              "es": "Un coche rápido.",
+              "pl": "Szybki samochód.",
+              "pt": "Um carro rápido.",
+              "fr": "Une voiture rapide.",
+              "it": "Una macchina veloce."
+            } },
+            "comparative": { "form": "snellere", "example": "Een snellere trein.", "translation": {
+              "en": "A faster train.",
+              "de": "Ein schnellerer Zug.",
+              "es": "Un tren más rápido.",
+              "pl": "Szybszy pociąg.",
+              "pt": "Um trem mais rápido.",
+              "fr": "Un train plus rapide.",
+              "it": "Un treno più veloce."
+            } },
+            "superlative": { "form": "snelste", "example": "De snelste route.", "translation": {
+              "en": "The fastest route.",
+              "de": "Die schnellste Route.",
+              "es": "La ruta más rápida.",
+              "pl": "Najszybsza trasa.",
+              "pt": "A rota mais rápida.",
+              "fr": "L'itinéraire le plus rapide.",
+              "it": "Il percorso più veloce."
+            } }
+          },
+          "notes": {
+            "en": "Describes a noun that is fast.",
+            "de": "Beschreibt ein schnelles Substantiv.",
+            "es": "Describe un sustantivo que es rápido.",
+            "pl": "Opisuje rzeczownik, który jest szybki.",
+            "pt": "Descreve um substantivo que é rápido.",
+            "fr": "Décrit un nom qui est rapide.",
+            "it": "Descrive un sostantivo che è veloce."
+          }
         }
       ]
     }

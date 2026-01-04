@@ -26,7 +26,8 @@ window.translations = {
     grammar: "Grammar",
     conjugation: "Conjugation:",
     pronoun: "Pronoun",
-    article: "Article:"
+    article: "Article:",
+    question: "question"
   },
   de: {
     title: "Niederländisch-Karteikarten",
@@ -54,35 +55,8 @@ window.translations = {
     grammar: "Grammatik",
     conjugation: "Konjugation:",
     pronoun: "Pronomen",
-    article: "Artikel:"
-  },
-  nl: {
-    title: "Nederlandse Flashcards",
-    search: "Zoeken...",
-    all: "Alle",
-    allLevels: "Alle Niveaus",
-    dailyReview: "Dagelijkse Herhaling",
-    showAll: "Alles Tonen",
-    forms: "Vormen:",
-    form: "Vorm",
-    value: "Waarde",
-    example: "Voorbeeld",
-    base: "Basis",
-    present: "Tegenwoordige tijd",
-    past: "Verleden tijd",
-    pastParticiple: "Voltooid deelwoord",
-    comparative: "Vergrotende trap",
-    superlative: "Overtreffende trap",
-    notes: "Opmerkingen:",
-    primary: "(primair)",
-    adjective: "Bijvoeglijk naamwoord",
-    adverb: "Bijwoord",
-    noun: "Zelfstandig naamwoord",
-    verb: "Werkwoord",
-    grammar: "Grammatica",
-    conjugation: "Vervoeging:",
-    pronoun: "Voornaamwoord",
-    article: "Lidwoord:"
+    article: "Artikel:",
+    question: "Frage"
   },
   es: {
     title: "Tarjetas de Holandés",
@@ -110,7 +84,8 @@ window.translations = {
     grammar: "Gramática",
     conjugation: "Conjugación:",
     pronoun: "Pronombre",
-    article: "Artículo:"
+    article: "Artículo:",
+    question: "pregunta"
   },
   pl: {
     title: "Fiszki Holenderskie",
@@ -138,7 +113,8 @@ window.translations = {
     grammar: "Gramatyka",
     conjugation: "Koniugacja:",
     pronoun: "Zaimek",
-    article: "Rodzajnik:"
+    article: "Rodzajnik:",
+    question: "pytanie"
   },
   pt: {
     title: "Flashcards de Holandês",
@@ -166,7 +142,8 @@ window.translations = {
     grammar: "Gramática",
     conjugation: "Conjugação:",
     pronoun: "Pronome",
-    article: "Artigo:"
+    article: "Artigo:",
+    question: "pergunta"
   },
   fr: {
     title: "Cartes Flash Néerlandaises",
@@ -194,7 +171,8 @@ window.translations = {
     grammar: "Grammaire",
     conjugation: "Conjugaison:",
     pronoun: "Pronom",
-    article: "Article:"
+    article: "Article:",
+    question: "(question)"
   },
   it: {
     title: "Flashcard Olandesi",
@@ -222,6 +200,7 @@ window.translations = {
     grammar: "Grammatica",
     conjugation: "Coniugazione:",
     pronoun: "Pronome",
-    article: "Articolo:"
+    article: "Articolo:",
+    question: "domanda"
   }
 };
