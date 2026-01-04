@@ -1,7 +1,3 @@
-let flashcards = [];
-let filteredCards = [];
-let dailyCards = [];
-let showingDaily = false;
 
 const flashcardContainer = document.getElementById('flashcardContainer');
 const searchInput = document.getElementById('search');
