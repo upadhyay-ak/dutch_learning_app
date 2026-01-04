@@ -1,4 +1,23 @@
+let flashcards = [];
+let filteredCards = [];
+let dailyCards = [];
+let showingDaily = false;
+
+const flashcardContainer = document.getElementById('flashcardContainer');
+const searchInput = document.getElementById('search');
+const categoryFilter = document.getElementById('categoryFilter');
+const levelFilter = document.getElementById('levelFilter');
+const dailyReviewBtn = document.getElementById('dailyReview');
 const autocompleteList = document.getElementById('autocomplete-list');
+
+// Fetch flashcards from JSON
+fetch('flashcards.json')
+  .then(res => res.json())
+  .then(data => {
+    flashcards = data.flashcards;
+    filteredCards = flashcards;
+    renderFlashcards(filteredCards);
+  });
 
 searchInput.addEventListener('input', () => {
   filterAndRender();
