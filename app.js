@@ -62,14 +62,18 @@ function showAutocompleteSuggestions() {
   let suggestions = new Set();
   flashcards.forEach(card => {
     if (card.word) suggestions.add(card.word);
-    if (card.forms && typeof card.forms === 'object') {
-      Object.values(card.forms).forEach(f => {
-        if (typeof f === 'object' && f.form) suggestions.add(f.form);
-      });
-    }
-    if (card.conjugation && typeof card.conjugation === 'object') {
-      Object.values(card.conjugation).forEach(f => {
-        if (typeof f === 'object' && f.form) suggestions.add(f.form);
+    if (card.usages && Array.isArray(card.usages)) {
+      card.usages.forEach(u => {
+        if (u.forms && typeof u.forms === 'object') {
+          Object.values(u.forms).forEach(f => {
+            if (f.form) suggestions.add(f.form);
+          });
+        }
+        if (u.conjugation && typeof u.conjugation === 'object') {
+          Object.values(u.conjugation).forEach(f => {
+            if (f.form) suggestions.add(f.form);
+          });
+        }
       });
     }
   });
