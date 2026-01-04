@@ -88,8 +88,9 @@ function populateCategoryFilter(cards) {
     }
   });
   const sortedCats = Array.from(categories).sort();
-  categoryFilter.innerHTML = '<option value="all">All</option>' +
-    sortedCats.map(cat => `<option value="${cat}">${capitalize(cat)}</option>`).join('');
+  const t = window.translations ? translations[currentLang] : {};
+  categoryFilter.innerHTML = `<option value="all">${t.all || 'All'}</option>` +
+    sortedCats.map(cat => `<option value="${cat}">${t[cat] || capitalize(cat)}</option>`).join('');
 }
 
 searchInput.addEventListener('input', () => {
@@ -212,7 +213,7 @@ function getCardBack(card, t = {}) {
         <div class="usage-category"><b>${t[usage.category] || capitalize(usage.category || '')}${usage.primary ? ' ' + (t.primary || '(primary)') : ''}</b></div>
         <div class="usage-meaning">${usage.meaning ? (usage.meaning[currentLang] || usage.meaning['en'] || '') : ''}</div>`;
       if (usage.article) {
-        html += `<div class="usage-article">Article: ${usage.article}</div>`;
+        html += `<div class="usage-article">${t.article || 'Article:'} ${usage.article}</div>`;
       }
       // Forms Table
       if (usage.forms && typeof usage.forms === 'object') {
@@ -224,7 +225,7 @@ function getCardBack(card, t = {}) {
       }
       // Conjugation Table
       if (usage.conjugation && typeof usage.conjugation === 'object') {
-        html += `<div class='conjugation'><b>Conjugation:</b><table class='conjugation-table'><thead><tr><th>Pronoun</th><th>${t.form || 'Form'}</th><th>${t.example || 'Example'}</th></tr></thead><tbody>`;
+        html += `<div class='conjugation'><b>${t.conjugation || 'Conjugation:'}</b><table class='conjugation-table'><thead><tr><th>${t.pronoun || 'Pronoun'}</th><th>${t.form || 'Form'}</th><th>${t.example || 'Example'}</th></tr></thead><tbody>`;
         for (const [pronoun, conjObj] of Object.entries(usage.conjugation)) {
           html += `<tr><td>${pronoun}</td><td>${conjObj.form}</td><td>${conjObj.example || ''}</td></tr>`;
         }
