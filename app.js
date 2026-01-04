@@ -23,7 +23,14 @@ function loadTranslations(cb) {
 function setLanguage(lang) {
   currentLang = lang;
   updateUITranslations();
-  renderFlashcards(filteredCards || flashcards || []);
+    renderFlashcards(filteredCards);
+    fetch('flashcards.json')
+      .then(res => res.json())
+      .then(data => {
+        flashcards = data.flashcards;
+        filteredCards = flashcards;
+        renderFlashcards(filteredCards);
+      });
 }
 
 function updateUITranslations() {
@@ -67,14 +74,14 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
     // Initial fetch and render
-    fetch('flashcards.json')
-      .then(res => res.json())
-      .then(data => {
-        flashcards = data.flashcards;
-        filteredCards = flashcards;
-        populateCategoryFilter(flashcards);
-        setLanguage('en'); // Always render in English on load
-      });
+      setLanguage('en'); // Always render in English on load
+      fetch('flashcards.json')
+        .then(res => res.json())
+        .then(data => {
+          flashcards = data.flashcards;
+          filteredCards = flashcards;
+          populateCategoryFilter(flashcards);
+        });
   });
 });
 
@@ -287,15 +294,30 @@ function filterAndRender() {
     // Level filter (top-level)
     let matchesLevel = level === 'all' || (card.level && card.level === level);
 
-    // Search logic: check word, and all usages (meaning, forms, conjugation)
+    // Search logic: check word, title, and all usages (meaning, forms, conjugation, notes)
     let matchesSearch = !search || (
       (card.word && card.word.toLowerCase().includes(search)) ||
       (card.title && card.title.toLowerCase().includes(search)) ||
-      (card.usages && card.usages.some(u =>
-        (u.meaning && u.meaning.toLowerCase().includes(search)) ||
-        (u.forms && Object.values(u.forms).some(f => f.form && f.form.toLowerCase().includes(search))) ||
-        (u.conjugation && Object.values(u.conjugation).some(f => f.form && f.form.toLowerCase().includes(search)))
-      ))
+      (card.usages && card.usages.some(u => {
+        // meaning: object with language keys
+        let meaningMatch = false;
+        if (u.meaning && typeof u.meaning === 'object') {
+          meaningMatch = Object.values(u.meaning).some(val => val && val.toLowerCase().includes(search));
+        } else if (u.meaning && typeof u.meaning === 'string') {
+          meaningMatch = u.meaning.toLowerCase().includes(search);
+        }
+        // notes: object with language keys
+        let notesMatch = false;
+        if (u.notes && typeof u.notes === 'object') {
+          notesMatch = Object.values(u.notes).some(val => val && val.toLowerCase().includes(search));
+        } else if (u.notes && typeof u.notes === 'string') {
+          notesMatch = u.notes.toLowerCase().includes(search);
+        }
+        // forms and conjugation
+        let formsMatch = u.forms && Object.values(u.forms).some(f => f.form && f.form.toLowerCase().includes(search));
+        let conjMatch = u.conjugation && Object.values(u.conjugation).some(f => f.form && f.form.toLowerCase().includes(search));
+        return meaningMatch || notesMatch || formsMatch || conjMatch;
+      }))
     );
     return matchesCat && matchesLevel && matchesSearch;
   });
