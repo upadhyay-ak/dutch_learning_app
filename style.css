@@ -153,6 +153,10 @@ h1 {
 .flashcard.adjective {
   background: #c8e6c9;
 }
+.flashcard.adverb {
+  background: #d1c4e9;
+  /* soft purple for adverbs */
+}
 .flashcard.grammar {
   background: #f8bbd0;
 }

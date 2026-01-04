@@ -213,26 +213,23 @@ function filterAndRender() {
   const cat = categoryFilter.value;
   const level = levelFilter.value;
   filteredCards = flashcards.filter(card => {
-    let matchesCat = cat === 'all' || (card.category === cat) || (cat === 'grammar' && card.type === 'grammar');
+    // Category filter: check all usages for a match
+    let matchesCat = cat === 'all' ||
+      (cat === 'grammar' && card.type === 'grammar') ||
+      (card.usages && card.usages.some(u => u.category === cat));
+
+    // Level filter (top-level)
     let matchesLevel = level === 'all' || (card.level && card.level === level);
+
+    // Search logic: check word, and all usages (meaning, forms, conjugation)
     let matchesSearch = !search || (
       (card.word && card.word.toLowerCase().includes(search)) ||
-      (card.meaning && card.meaning.toLowerCase().includes(search)) ||
       (card.title && card.title.toLowerCase().includes(search)) ||
-      // Search in forms
-      (card.forms && typeof card.forms === 'object' && Object.values(card.forms).some(f => {
-        if (typeof f === 'object') {
-          return (f.form && f.form.toLowerCase().includes(search));
-        }
-        return false;
-      })) ||
-      // Search in conjugation
-      (card.conjugation && typeof card.conjugation === 'object' && Object.values(card.conjugation).some(f => {
-        if (typeof f === 'object') {
-          return (f.form && f.form.toLowerCase().includes(search));
-        }
-        return false;
-      }))
+      (card.usages && card.usages.some(u =>
+        (u.meaning && u.meaning.toLowerCase().includes(search)) ||
+        (u.forms && Object.values(u.forms).some(f => f.form && f.form.toLowerCase().includes(search))) ||
+        (u.conjugation && Object.values(u.conjugation).some(f => f.form && f.form.toLowerCase().includes(search)))
+      ))
     );
     return matchesCat && matchesLevel && matchesSearch;
   });
