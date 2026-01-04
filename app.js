@@ -1,3 +1,53 @@
+const autocompleteList = document.getElementById('autocomplete-list');
+
+searchInput.addEventListener('input', () => {
+  filterAndRender();
+  showAutocompleteSuggestions();
+});
+
+searchInput.addEventListener('blur', () => {
+  setTimeout(() => autocompleteList.innerHTML = '', 150);
+});
+
+autocompleteList.addEventListener('mousedown', (e) => {
+  if (e.target && e.target.matches('div[data-value]')) {
+    searchInput.value = e.target.getAttribute('data-value');
+    filterAndRender();
+    autocompleteList.innerHTML = '';
+    searchInput.focus();
+  }
+});
+
+function showAutocompleteSuggestions() {
+  const val = searchInput.value.trim().toLowerCase();
+  if (!val) {
+    autocompleteList.innerHTML = '';
+    autocompleteList.style.display = 'none';
+    return;
+  }
+  let suggestions = new Set();
+  flashcards.forEach(card => {
+    if (card.word) suggestions.add(card.word);
+    if (card.forms && typeof card.forms === 'object') {
+      Object.values(card.forms).forEach(f => {
+        if (typeof f === 'object' && f.form) suggestions.add(f.form);
+      });
+    }
+    if (card.conjugation && typeof card.conjugation === 'object') {
+      Object.values(card.conjugation).forEach(f => {
+        if (typeof f === 'object' && f.form) suggestions.add(f.form);
+      });
+    }
+  });
+  const matches = Array.from(suggestions).filter(s => s.toLowerCase().includes(val)).slice(0, 8);
+  if (matches.length === 0) {
+    autocompleteList.innerHTML = '';
+    autocompleteList.style.display = 'none';
+    return;
+  }
+  autocompleteList.innerHTML = matches.map(s => `<div data-value="${s}">${s}</div>`).join('');
+  autocompleteList.style.display = 'block';
+}
 let flashcards = [];
 let filteredCards = [];
 let dailyCards = [];
@@ -101,8 +151,7 @@ function capitalize(str) {
 }
 
 searchInput.addEventListener('input', () => {
-  filterAndRender();
-});
+  // replaced by enhanced autocomplete logic above
 
 
 categoryFilter.addEventListener('change', () => {
