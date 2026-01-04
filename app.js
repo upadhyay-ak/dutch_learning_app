@@ -29,13 +29,17 @@ function setLanguage(lang) {
 function updateUITranslations() {
   if (!window.translations) return;
   const t = translations[currentLang];
-  // Title
-  const titleEl = document.querySelector('h1[data-i18n="title"]');
-  if (titleEl) titleEl.textContent = t.title;
-  // Search placeholder
-  const searchEl = document.getElementById('search');
-  if (searchEl) searchEl.placeholder = t.search;
-  // Category filter
+  // Translate all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+  // Translate all elements with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  // Category filter options (dynamic)
   const catSel = document.getElementById('categoryFilter');
   if (catSel) {
     Array.from(catSel.options).forEach(opt => {
@@ -43,16 +47,13 @@ function updateUITranslations() {
       else if (t[opt.value]) opt.textContent = t[opt.value];
     });
   }
-  // Level filter
+  // Level filter options (dynamic)
   const levelSel = document.getElementById('levelFilter');
   if (levelSel) {
     Array.from(levelSel.options).forEach(opt => {
       if (opt.value === 'all') opt.textContent = t.allLevels;
     });
   }
-  // Daily review button
-  const drBtn = document.getElementById('dailyReview');
-  if (drBtn) drBtn.textContent = t.dailyReview;
 }
 
 // Language selector event
@@ -60,8 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
   loadTranslations(() => {
     const langSel = document.getElementById('languageSelector');
     if (langSel) {
-      langSel.value = currentLang;
-      langSel.addEventListener('change', e => setLanguage(e.target.value));
+      langSel.value = 'en'; // Always default to English
+      langSel.addEventListener('change', e => {
+        setLanguage(e.target.value);
+      });
     }
     // Initial fetch and render
     fetch('flashcards.json')
@@ -70,8 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         flashcards = data.flashcards;
         filteredCards = flashcards;
         populateCategoryFilter(flashcards);
-        updateUITranslations();
-        renderFlashcards(filteredCards);
+        setLanguage('en'); // Always render in English on load
       });
   });
 });
