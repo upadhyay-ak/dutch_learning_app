@@ -20,12 +20,17 @@ function setLanguage(lang) {
 }
 
 function updateUITranslations() {
+  console.log('updateUITranslations called, currentLang:', currentLang);
+  console.log('window.translations available:', !!window.translations);
+  
   if (!window.translations) return;
   const t = translations[currentLang];
+  console.log('Translation object:', t);
   
   // Translate all elements with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
+    console.log('Translating key:', key, 'to:', t[key]);
     if (t[key]) el.textContent = t[key];
   });
   
