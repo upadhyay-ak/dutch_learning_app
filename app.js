@@ -281,28 +281,41 @@ function filterAndRender() {
     // Level filter (top-level)
     let matchesLevel = level === 'all' || (card.level && card.level === level);
 
-    // Search logic: check word, title, and all usages (meaning, forms, conjugation, notes)
+    // Search logic: check word, title, and all usages (meaning in current language, forms, conjugation, notes)
     let matchesSearch = !search || (
       (card.word && card.word.toLowerCase().includes(search)) ||
       (card.title && card.title.toLowerCase().includes(search)) ||
       (card.usages && card.usages.some(u => {
-        // meaning: object with language keys
+        // meaning: search in current language specifically
         let meaningMatch = false;
         if (u.meaning && typeof u.meaning === 'object') {
-          meaningMatch = Object.values(u.meaning).some(val => val && val.toLowerCase().includes(search));
+          const currentMeaning = u.meaning[currentLang];
+          meaningMatch = currentMeaning && currentMeaning.toLowerCase().includes(search);
         } else if (u.meaning && typeof u.meaning === 'string') {
           meaningMatch = u.meaning.toLowerCase().includes(search);
         }
-        // notes: object with language keys
+        
+        // notes: search in current language specifically
         let notesMatch = false;
         if (u.notes && typeof u.notes === 'object') {
-          notesMatch = Object.values(u.notes).some(val => val && val.toLowerCase().includes(search));
+          const currentNotes = u.notes[currentLang];
+          notesMatch = currentNotes && currentNotes.toLowerCase().includes(search);
         } else if (u.notes && typeof u.notes === 'string') {
           notesMatch = u.notes.toLowerCase().includes(search);
         }
-        // forms and conjugation
-        let formsMatch = u.forms && Object.values(u.forms).some(f => f.form && f.form.toLowerCase().includes(search));
-        let conjMatch = u.conjugation && Object.values(u.conjugation).some(f => f.form && f.form.toLowerCase().includes(search));
+        
+        // forms: search all forms (conjugations, comparatives, superlatives, plurals, etc.)
+        let formsMatch = false;
+        if (u.forms && Object.values(u.forms).some(f => f.form && f.form.toLowerCase().includes(search))) {
+          formsMatch = true;
+        }
+        
+        // conjugation: search all conjugated forms
+        let conjMatch = false;
+        if (u.conjugation && Object.values(u.conjugation).some(f => f.form && f.form.toLowerCase().includes(search))) {
+          conjMatch = true;
+        }
+        
         return meaningMatch || notesMatch || formsMatch || conjMatch;
       }))
     );
