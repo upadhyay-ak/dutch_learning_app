@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Dutch Flashcards</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="DutchCards">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <img src="logo.png" alt="Dutch Flashcards" class="logo" />
+      <h1>Dutch Flashcards</h1>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-wrapper">
+        <input type="text" id="search" placeholder="Search..." autocomplete="off" />
+        <div id="autocomplete-list" class="autocomplete-items"></div>
+      </div>
+      
+      <select id="posFilter" class="filter-select">
+        <option value="all">All</option>
+      </select>
+      
+      <select id="levelFilter" class="filter-select">
+        <option value="all">All Levels</option>
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="B1">B1</option>
+        <option value="B2">B2</option>
+        <option value="C1">C1</option>
+        <option value="C2">C2</option>
+      </select>
+      
+      <button id="dailyReviewBtn" class="daily-review-btn">Daily Review</button>
+    </div>
+
+    <!-- Flashcard View (Initially Hidden) -->
+    <div id="flashcardView" class="flashcard-view" style="display: none;">
+      <div class="flashcard-header">
+        <button id="closeFlashcard" class="close-btn">✕</button>
+        <span id="cardProgress">1 / 20</span>
+      </div>
+      
+      <div class="flashcard-container">
+        <div id="flashcard" class="flashcard">
+          <!-- Front -->
+          <div class="flashcard-front">
+            <div class="word-display">
+              <span id="frontArticle" class="article"></span>
+              <span id="frontWord" class="word"></span>
+              <button id="audioBtn" class="audio-btn">🔊</button>
+            </div>
+            <div id="frontHyphenation" class="hyphenation"></div>
+          </div>
+          
+          <!-- Back (swipeable cards) -->
+          <div class="flashcard-back">
+            <div class="swipe-indicator">Swipe for more →</div>
+            <div id="backCardsContainer" class="back-cards-container">
+              <!-- Back cards will be inserted here -->
+            </div>
+            <div class="card-dots" id="cardDots"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flashcard-nav">
+        <button id="prevCard" class="nav-btn">← Previous</button>
+        <button id="flipCard" class="flip-btn">Flip Card</button>
+        <button id="nextCard" class="nav-btn">Next →</button>
+      </div>
+    </div>
+
+    <!-- Card List View -->
+    <div id="cardListView" class="card-list">
+      <!-- Cards will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
