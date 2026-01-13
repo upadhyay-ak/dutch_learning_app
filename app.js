@@ -19,8 +19,9 @@ async function loadFlashcards() {
     
     console.log('Loaded', allCards.length, 'flashcards');
     
-    // Populate POS filter
+    // Populate filters
     populatePOSFilter();
+    populateLevelFilter();
     
     // Display all cards initially
     filteredCards = [...allCards];
@@ -55,6 +56,35 @@ function populatePOSFilter() {
     option.value = pos;
     option.textContent = pos.charAt(0).toUpperCase() + pos.slice(1);
     posFilter.appendChild(option);
+  });
+}
+
+function populateLevelFilter() {
+  const levelSet = new Set();
+  allCards.forEach(card => {
+    const level = card.back?.level;
+    if (level) {
+      levelSet.add(level);
+    }
+  });
+  
+  const levelFilter = document.getElementById('levelFilter');
+  if (!levelFilter) return;
+  
+  // Clear existing options except "All Levels"
+  levelFilter.innerHTML = '<option value="all">All Levels</option>';
+  
+  // Sort levels: A1, A2, B1, B2, C1, C2
+  const levelOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const sorted = Array.from(levelSet).sort((a, b) => {
+    return levelOrder.indexOf(a) - levelOrder.indexOf(b);
+  });
+  
+  sorted.forEach(level => {
+    const option = document.createElement('option');
+    option.value = level;
+    option.textContent = level;
+    levelFilter.appendChild(option);
   });
 }
 
