@@ -37,8 +37,10 @@ function populatePOSFilter() {
   allCards.forEach(card => {
     if (card.pos_cards && Array.isArray(card.pos_cards)) {
       card.pos_cards.forEach(pos => {
-        if (pos.pos_type && typeof pos.pos_type === 'string') {
-          posSet.add(pos.pos_type);
+        // Handle both old pos_type and new part_of_speech fields
+        const posType = pos.part_of_speech || pos.pos_type;
+        if (posType && typeof posType === 'string') {
+          posSet.add(posType);
         }
       });
     }
@@ -156,7 +158,7 @@ function applyFilters() {
     
     // POS filter
     if (posFilter !== 'all') {
-      const hasPOS = card.pos_cards.some(pos => pos.pos_type === posFilter);
+      const hasPOS = card.pos_cards.some(pos => (pos.part_of_speech || pos.pos_type) === posFilter);
       if (!hasPOS) return false;
     }
     
@@ -207,13 +209,13 @@ function displayCardList() {
     cardEl.onclick = () => openFlashcard(index);
     
     const article = card.front.article ? `<span class="card-item-article">${card.front.article}</span>` : '';
-    const meanings = card.back.meanings.join(', ');
+    const pronunciation = card.front.hyphenation || 'No pronunciation available';
     
     cardEl.innerHTML = `
       <div class="card-item-word">
         ${article}${card.front.word}
       </div>
-      <div class="card-item-meaning">${meanings}</div>
+      <div class="card-item-meaning">${pronunciation}</div>
       <div class="card-item-level">${card.back.level}</div>
     `;
     
@@ -319,12 +321,6 @@ function createBackCards(card) {
         <div class="back-card-value">${card.back.derived_words.join(', ')}</div>
       </div>
     ` : ''}
-    ${card.back.etymology ? `
-      <div class="back-card-section">
-        <div class="back-card-label">Etymology</div>
-        <div class="back-card-value">${card.back.etymology}</div>
-      </div>
-    ` : ''}
   `;
   backCards.push(basicCard);
   
@@ -347,26 +343,61 @@ function createBackCards(card) {
       `;
     }
     
+    // Conjugation table for verbs
+    let conjugationHTML = '';
+    const posType = pos.part_of_speech || pos.pos_type;
+    if (posType === 'verb' && pos.conjugation_table) {
+      // Handle both old structure (with conjugations property) and new direct structure
+      const conj = pos.conjugation_table.conjugations || pos.conjugation_table;
+      const baseForm = pos.conjugation_table.base_form || pos.dutch_meaning;
+      
+      conjugationHTML = `
+        <div class="conjugation-table">
+          <h4>Conjugation: ${baseForm}</h4>
+          <table class="forms-table">
+            <tr><th>Person</th><th>Statement</th><th>Question</th></tr>
+            <tr><td>ik</td><td class="verb-form">${conj.ik?.statement || conj.ik || ''}</td><td>-</td></tr>
+            <tr><td>jij/je</td><td class="verb-form">${conj.jij_je?.statement || conj.jij_je || ''}</td><td class="question-form">${conj.jij_je?.question || ''}</td></tr>
+            <tr><td>u</td><td class="verb-form">${conj.u?.statement || conj.u || ''}</td><td class="question-form">${conj.u?.question || ''}</td></tr>
+            <tr><td>hij/zij/het</td><td class="verb-form">${conj.hij_zij_het?.statement || conj.hij_zij_het || ''}</td><td>-</td></tr>
+            <tr><td>wij</td><td class="verb-form">${conj.wij?.statement || conj.wij || ''}</td><td>-</td></tr>
+            <tr><td>jullie</td><td class="verb-form">${conj.jullie?.statement || conj.jullie || ''}</td><td>-</td></tr>
+            <tr><td>zij</td><td class="verb-form">${conj.zij?.statement || conj.zij || ''}</td><td>-</td></tr>
+          </table>
+        </div>
+      `;
+    }
+    
     let examplesHTML = '';
     if (pos.examples && pos.examples.length > 0) {
       examplesHTML = `
         <div class="back-card-section">
           <div class="back-card-label">Examples</div>
-          <ul class="back-card-list">
-            ${pos.examples.map(ex => `<li>${ex}</li>`).join('')}
-          </ul>
+          <div class="back-card-list">
+            ${pos.examples.map((example, idx) => {
+              const translation = pos.examples_en && pos.examples_en[idx] ? 
+                `<div class="english-translation">${pos.examples_en[idx]}</div>` : '';
+              return `<div class="dutch-example">${example}</div>${translation}`;
+            }).join('')}
+          </div>
         </div>
       `;
     }
     
+    // Dutch meaning with English translation
+    const meaningHTML = pos.dutch_meaning_en ? 
+      `<div class="dutch-meaning">${pos.dutch_meaning}</div><div class="english-meaning">${pos.dutch_meaning_en}</div>` :
+      `<div class="dutch-meaning">${pos.dutch_meaning}</div>`;
+    
     posCard.innerHTML = `
-      <h3>${pos.pos_title} (${pos.pos_type})</h3>
+      <h3>${pos.pos_title} (${pos.part_of_speech || pos.pos_type})</h3>
       ${pos.gender ? `<div class="back-card-value"><strong>Gender:</strong> ${pos.gender}</div>` : ''}
       <div class="back-card-section">
         <div class="back-card-label">Dutch Meaning</div>
-        <div class="back-card-value">${pos.dutch_meaning}</div>
+        <div class="back-card-value">${meaningHTML}</div>
       </div>
       ${formsHTML}
+      ${conjugationHTML}
       ${examplesHTML}
     `;
     backCards.push(posCard);

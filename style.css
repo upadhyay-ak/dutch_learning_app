@@ -458,3 +458,79 @@ body {
     height: 350px;
   }
 }
+
+/* Dutch text and English translation styling */
+.dutch-example {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.english-translation {
+  font-size: 0.85em;
+  color: #6b7280;
+  font-style: italic;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.dutch-meaning {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.english-meaning {
+  font-size: 0.9em;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Conjugation table styling */
+.conjugation-table {
+  margin: 16px 0;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.conjugation-table h4 {
+  margin: 0 0 12px 0;
+  color: #374151;
+  font-size: 1.1em;
+}
+
+.forms-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.forms-table th {
+  background: #e2e8f0;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-radius: 4px;
+}
+
+.forms-table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.forms-table tr:last-child td {
+  border-bottom: none;
+}
+
+.forms-table .verb-form {
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.forms-table .question-form {
+  font-weight: 500;
+  color: #dc2626;
+}
