@@ -420,3 +420,6 @@ FodyWeavers.xsd
 
 # resource files
 resources/
+
+# flashcard word generation process
+flashcard_word_generation/
