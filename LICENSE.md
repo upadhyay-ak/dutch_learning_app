@@ -35,6 +35,11 @@ The following are **original works** and remain under exclusive copyright:
 - User interface and interaction design
 - Progressive Web App functionality
 
+✅ **Application Icon** - © 2026, All rights reserved
+- Custom-designed icon (logo.png, logo.svg)
+- Created using Dutch flag colors
+- No third-party assets or licensing requirements
+
 ## Usage Terms
 
 ### Personal Use

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#ffffff" rx="80"/>
+  
+  <!-- Dutch flag colors as card -->
+  <g transform="translate(106, 106)">
+    <!-- Card background -->
+    <rect x="0" y="0" width="300" height="300" fill="#f8fafc" rx="20" stroke="#e2e8f0" stroke-width="4"/>
+    
+    <!-- Dutch flag stripes -->
+    <rect x="30" y="40" width="240" height="40" fill="#AE1C28" rx="4"/>
+    <rect x="30" y="85" width="240" height="40" fill="#FFFFFF" rx="4" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="30" y="130" width="240" height="40" fill="#21468B" rx="4"/>
+    
+    <!-- Text "NL" -->
+    <text x="150" y="230" font-family="Arial, sans-serif" font-size="80" font-weight="bold" 
+          text-anchor="middle" fill="#1e293b">NL</text>
+  </g>
+</svg>

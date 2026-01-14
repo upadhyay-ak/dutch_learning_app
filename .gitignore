@@ -423,3 +423,5 @@ resources/
 
 # flashcard word generation process
 flashcard_word_generation/
+# Keep original unencrypted as backup (don't push)
+flashcards.json

@@ -5,6 +5,29 @@ let currentCardIndex = 0;
 let isDailyReview = false;
 let currentAudio = null;
 
+// Decryption function
+function decryptFlashcards(encryptedBase64, key = "DutchFlashcards2026SecureKey") {
+  // Decode base64
+  const encryptedStr = atob(encryptedBase64);
+  
+  // Convert to byte array
+  const encryptedBytes = new Uint8Array(encryptedStr.length);
+  for (let i = 0; i < encryptedStr.length; i++) {
+    encryptedBytes[i] = encryptedStr.charCodeAt(i);
+  }
+  
+  // XOR decrypt
+  const keyBytes = new TextEncoder().encode(key);
+  const decrypted = new Uint8Array(encryptedBytes.length);
+  for (let i = 0; i < encryptedBytes.length; i++) {
+    decrypted[i] = encryptedBytes[i] ^ keyBytes[i % keyBytes.length];
+  }
+  
+  // Convert back to string
+  const jsonStr = new TextDecoder().decode(decrypted);
+  return JSON.parse(jsonStr);
+}
+
 // Load flashcards on page load
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
@@ -13,8 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadFlashcards() {
   try {
-    const response = await fetch('flashcards.json');
-    const data = await response.json();
+    const response = await fetch('flashcards_encrypted.json');
+    const encryptedData = await response.json();
+    
+    // Decrypt the data
+    const data = decryptFlashcards(encryptedData.data);
     allCards = data.cards;
     
     console.log('Loaded', allCards.length, 'flashcards');
