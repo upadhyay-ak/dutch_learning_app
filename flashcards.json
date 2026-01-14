@@ -1,4 +1,17 @@
 {
+  "_metadata": {
+    "copyright": "© 2026 Dutch Flashcards. All rights reserved.",
+    "license": "Mixed content - see attributions",
+    "attributions": {
+      "word_lists": "Derived from Leipzig Corpora Collection (CC BY 4.0) and Wiktionary frequency lists (CC BY-SA 3.0)",
+      "dutch_definitions": "Dutch Wiktionary (CC BY-SA 3.0)",
+      "english_translations": "Original work © 2026",
+      "verb_conjugations": "Original work © 2026",
+      "application": "Proprietary © 2026"
+    },
+    "usage_terms": "Free for personal use. Commercial redistribution or derivative works require permission.",
+    "contact": "For licensing inquiries, please contact the author."
+  },
   "cards": [
     {
       "card_id": "01711203",
